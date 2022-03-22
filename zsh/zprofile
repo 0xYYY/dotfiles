@@ -1,0 +1,9 @@
+# Set path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+# Startx
+if systemctl -q is-active graphical.target &&  [[ ! $TMUX && ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    exec startx
+fi
