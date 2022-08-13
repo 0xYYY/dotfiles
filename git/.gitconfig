@@ -1,0 +1,26 @@
+[user]
+    name = 0xYYY
+    email = 0xYYY@protonmail.com
+
+[credential "https://github.com"]
+    helper = !/opt/homebrew/bin/gh auth git-credential
+
+[core]
+    excludesfile = ~/.gitignore_global
+    pager = delta
+
+[init]
+    defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only --dark
+
+[delta]
+    features = decorations navigate
+    line-numbers = true
+    side-whitespace = true
+    whitespace-error-style = 22 reverse
+    syntax-theme = Solarized (dark)
+
+[delta "decorations"]
+    file-style = bold yellow ul

@@ -1,0 +1,196 @@
+local cmd = vim.cmd
+local utils = require("utils")
+local colors = require("colors")
+local nvim_lsp = require("lspconfig")
+local null_ls = require("null-ls")
+
+local on_attach = function(client, bufnr)
+	-- Formatting
+	require("lsp-format").on_attach(client)
+
+	-- Mappings
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+	local opts = { noremap = true, silent = true }
+	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+end
+
+-- Setup
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local servers = { "gopls", "tsserver", "pyright", "bashls" }
+local servers = {}
+for _, lsp in ipairs(servers) do
+	nvim_lsp[lsp].setup({
+		on_attach = on_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
+		capabilities = capabilities,
+	})
+end
+require("rust-tools").setup({ server = { on_attach = on_attach, capabilities = capabilities } })
+
+-- null-ls
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettier.with({
+			extra_filetypes = { "solidity", "toml" },
+		}),
+		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.code_actions.shellcheck,
+		null_ls.builtins.formatting.shellharden,
+		null_ls.builtins.formatting.shfmt,
+	},
+	on_attach = on_attach,
+})
+
+-- lsp-colors
+require("lsp-colors").setup({
+	Error = colors.red,
+	Warning = colors.yellow,
+	Information = colors.blue,
+	Hint = colors.cyan,
+})
+
+-- Signs
+local signs = { Error = "", Warning = "", Information = "", Hint = "" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- lspsaga
+-- hack to modify winbar colors
+local kind = require("lspsaga.lspkind")
+kind[1][3] = colors.base1
+kind[2][3] = colors.blue
+kind[3][3] = colors.orange
+kind[4][3] = colors.violet
+kind[5][3] = colors.violet
+kind[6][3] = colors.violet
+kind[7][3] = colors.cyan
+kind[8][3] = colors.cyan
+kind[9][3] = colors.blue
+kind[10][3] = colors.green
+kind[11][3] = colors.orange
+kind[12][3] = colors.violet
+kind[13][3] = colors.blue
+kind[14][3] = colors.cyan
+kind[15][3] = colors.green
+kind[16][3] = colors.green
+kind[17][3] = colors.orange
+kind[18][3] = colors.blue
+kind[19][3] = colors.orange
+kind[20][3] = colors.red
+kind[21][3] = colors.red
+kind[22][3] = colors.green
+kind[23][3] = colors.violet
+kind[24][3] = colors.violet
+kind[25][3] = colors.green
+kind[26][3] = colors.green
+kind[252][3] = colors.green
+kind[253][3] = colors.blue
+kind[254][3] = colors.orange
+kind[255][3] = colors.red
+
+kind[1][2] = " "
+kind[2][2] = " "
+kind[3][2] = " "
+kind[4][2] = " "
+kind[5][2] = " "
+kind[6][2] = " "
+kind[7][2] = " "
+kind[8][2] = " "
+kind[9][2] = " "
+kind[10][2] = " "
+kind[11][2] = " "
+kind[12][2] = " "
+kind[13][2] = " "
+kind[14][2] = " "
+kind[15][2] = " "
+kind[16][2] = " "
+kind[17][2] = " "
+kind[18][2] = " "
+kind[19][2] = " "
+kind[20][2] = " "
+kind[21][2] = "ﳠ "
+kind[22][2] = " "
+kind[23][2] = "פּ "
+kind[24][2] = " "
+kind[25][2] = ""
+kind[26][2] = " "
+
+local saga = require("lspsaga")
+saga.init_lsp_saga({
+	border_style = "double",
+	saga_winblend = 10,
+	diagnostic_header = { " ", " ", " ", " " },
+	code_action_icon = " ",
+	symbol_in_winbar = {
+		in_custom = false,
+		enable = true,
+		separator = "  ",
+		show_file = true,
+		click_support = false,
+	},
+})
+
+-- keymap
+local action = require("lspsaga.action")
+utils.map("n", "<Leader>d", "<cmd>Lspsaga preview_definition<CR>")
+utils.map("n", "<Leader>h", "<Cmd>Lspsaga signature_help<CR>")
+utils.map("n", "<Leader>H", "<cmd>Lspsaga hover_doc<CR>")
+utils.map("n", "<Leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>")
+utils.map("n", "[d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+utils.map("n", "]d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+utils.map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+utils.map("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
+-- scroll up/down preview
+vim.keymap.set("n", "<C-f>", function()
+	action.smart_scroll_with_saga(1)
+end, { silent = true })
+vim.keymap.set("n", "<C-b>", function()
+	action.smart_scroll_with_saga(-1)
+end, { silent = true })
+
+-- highlight
+vim.api.nvim_set_hl(0, "LspSagaWinbarSep", { fg = colors.base00 })
+local border_hl_groups = {
+	"LspSagaDefPreviewBorder",
+	"LspSagaSignatureHelpBorder",
+	"LspSagaHoverBorder",
+	"LspSagaDiagnosticBorder",
+	"LspSagaRenameBorder",
+	"LspSagaCodeActionBorder",
+}
+for _, g in pairs(border_hl_groups) do
+	vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
+end
+local line_hl_groups = {
+
+	"LspSagaShTrunCateLine",
+	"LspSagaHoverTrunCateLine",
+	"LspSagaDiagnosticTruncateLine",
+	"LspSagaErrorTrunCateLine",
+	"LspSagaWarnTrunCateLine",
+	"LspSagaInfoTrunCateLine",
+	"LspSagaHintTrunCateLine",
+	"LspSagaCodeActionTrunCateLine",
+}
+for _, g in pairs(line_hl_groups) do
+	vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
+end
+local title_hl_groups = {
+	"DefinitionPreviewTitle",
+	"LspSagaDiagnosticHeader",
+	"LspSagaCodeActionTitle",
+}
+for _, g in pairs(title_hl_groups) do
+	vim.api.nvim_set_hl(0, g, { fg = colors.blue, bold = true })
+end
+vim.api.nvim_set_hl(0, "LspSagaCodeActionContent", { fg = colors.base2 })

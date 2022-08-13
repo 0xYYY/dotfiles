@@ -1,0 +1,79 @@
+format = """
+[#](bold) \
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$conda\
+$rust\
+$nodejs\
+$golang\
+$custom\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+scan_timeout = 30
+
+add_newline = true
+
+[username]
+style_user = "bold blue"
+format = "[$user]($style) "
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "bold cyan"
+format = "[$hostname]($style) "
+
+[directory]
+style = "bold yellow"
+read_only = ""
+read_only_style = "bold red"
+truncation_symbol = ".../"
+format = "[$path]($style)[( $read_only )]($read_only_style) "
+
+[conda]
+symbol = ""
+style = "bold blue"
+format = "[$symbol $environment]($style) "
+ignore_base = false
+
+[rust]
+symbol = ""
+style = "bold red"
+format = "[$symbol $version]($style) "
+
+[nodejs]
+symbol = ""
+format = "[$symbol ($version )]($style)"
+
+[golang]
+symbol = "ﳑ"
+format = "[$symbol ($version )]($style)"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+
+[git_status]
+deleted = "x"
+
+[cmd_duration]
+min_time = 5_000
+format = "[$duration]($style) "
+
+# not working
+[jobs]
+threshold = 1
+symbol = "✦"
+format = "[$symbol $number]($style) "
+disabled = false
+
+[character]
+success_symbol = "[❯](gray)"
+error_symbol = "[❯](red)"
