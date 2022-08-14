@@ -7,7 +7,7 @@ zstyle ':omz:update' mode auto
 
 # zvm
 function zvm_config() {
-  ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+  ZVM_VI_ESCAPE_BINDKEY=jk
 }
 
 # plugins
