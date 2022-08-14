@@ -8,6 +8,8 @@ zstyle ':omz:update' mode auto
 # zvm
 function zvm_config() {
   ZVM_VI_ESCAPE_BINDKEY=jk
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 }
 
 # plugins
