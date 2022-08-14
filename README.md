@@ -114,7 +114,7 @@ cargo install sccache
 
 I like to explore CLI tools implemented in Rust, since
 
-1. they are often faster and more user-friendly after the re-implementation
+1. they are often faster and more user-friendly after the re-implementation, and
 2. I would like to contribute to open-source Rust projects, and these tools give me a lot of great
    starting points.
 
