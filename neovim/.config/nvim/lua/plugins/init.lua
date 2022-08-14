@@ -18,6 +18,7 @@ require("plugins.completion")
 
 -- Editing
 require("plugins.hop")
+require("plugins.surround")
 require("plugins.kommentary")
 require("plugins.todo")
 require("plugins.specs")

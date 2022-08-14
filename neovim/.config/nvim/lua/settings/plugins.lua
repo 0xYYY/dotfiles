@@ -50,8 +50,8 @@ local completion = {
 }
 
 local editing = {
-	-- "easymotion/vim-easymotion",
 	"phaazon/hop.nvim",
+	"kylechui/nvim-surround",
 	"b3nj5m1n/kommentary",
 	"folke/todo-comments.nvim",
 	"edluffy/specs.nvim",
