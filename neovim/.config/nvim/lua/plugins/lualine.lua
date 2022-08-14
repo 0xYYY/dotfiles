@@ -20,6 +20,9 @@ local lspclient = {
 		end
 		return client_names
 	end,
+	cond = function()
+		return #vim.lsp.buf_get_clients() > 0
+	end,
 	icons_enabled = true,
 	icon = "",
 	color = function(section)
@@ -27,6 +30,51 @@ local lspclient = {
 		local icon, color = require("nvim-web-devicons").get_icon_color(f_name, f_ext)
 		return { fg = color }
 	end,
+}
+
+local lspprogress = {
+	"lsp_progress",
+	display_components = { "spinner", { "title", "percentage", "message" } },
+	colors = {
+		percentage = colors.blue,
+		title = colors.blue,
+		message = colors.base1,
+		spinner = colors.blue,
+		lsp_client_name = colors.magenta,
+		use = true,
+	},
+	timer = { progress_enddelay = 100, spinner = 100, lsp_client_name_enddelay = 100 },
+	spinner_symbols = {
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+	},
 }
 
 require("lualine").setup({
@@ -49,21 +97,26 @@ require("lualine").setup({
 		},
 	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = { {
+			"mode",
+			fmt = function(str)
+				return str:sub(1, 3)
+			end,
+		} },
 		lualine_b = {
 			{ "branch", icon = "" },
 			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 		},
-		lualine_c = { lspclient, "diagnostics" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_c = { lspclient, "diagnostics", lspprogress },
+		lualine_x = { "encoding", "fileformat", { "filetype", icon_only = true } },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
 	},
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},

@@ -43,7 +43,7 @@ cargo install sccache
 ```
 curl -Ls https://micro.mamba.pm/api/micromamba/osx-arm64/latest | tar -xvj bin/micromamba
 mv bin/micromamba $HOME/.local/micromamba
-mamba install -n base python=3.10 --yes
+mamba install -n base python=3.10 ipython --yes
 ```
 
 # NodeJS
@@ -95,7 +95,7 @@ I like to explore CLI tools implemented in Rust, since
 
 ### List
 
-atuin bat bottom choose exa fd-find git-delta gitui jless pueue procs ripgrep sd starship tokei tuc xsv zoxide xcp dua-cli skim hexyl heh xh fnm volta rnr rm-improved huniq jql just
+atuin bat bottom choose exa fd-find git-delta gitui jless pueue procs ripgrep sd starship tokei tuc xsv zoxide xcp dua-cli skim hexyl heh xh fnm volta rnr rm-improved huniq jql just watchexec-cli
 
 ## Just for Fun!
 

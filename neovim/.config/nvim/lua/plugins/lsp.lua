@@ -1,6 +1,6 @@
-local cmd = vim.cmd
 local utils = require("utils")
 local colors = require("colors")
+
 local nvim_lsp = require("lspconfig")
 local null_ls = require("null-ls")
 
@@ -50,12 +50,16 @@ null_ls.setup({
 })
 
 -- lsp-colors
-require("lsp-colors").setup({
-	Error = colors.red,
-	Warning = colors.yellow,
-	Information = colors.blue,
-	Hint = colors.cyan,
-})
+vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.red })
+vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = colors.yellow })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = colors.blue })
+vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.cyan })
+-- require("lsp-colors").setup({
+-- 	Error = colors.red,
+-- 	Warning = colors.yellow,
+-- 	Information = colors.blue,
+-- 	Hint = colors.cyan,
+-- })
 
 -- Signs
 local signs = { Error = "", Warning = "", Information = "", Hint = "" }

@@ -10,7 +10,7 @@ zstyle ':omz:update' mode auto
 function zvm_config() {
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 }
-plugins=(git tmux extract fd fnm ripgrep rust zoxide yarn)
+plugins=(git tmux extract fd ripgrep rust zoxide yarn)
 
 source $ZSH/oh-my-zsh.sh
 
