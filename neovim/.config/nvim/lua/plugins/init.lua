@@ -1,7 +1,6 @@
 -- UI
 require("plugins.colorizer")
 require("plugins.barbar")
--- require("plugins.statusline")
 require("plugins.lualine")
 require("plugins.gitsigns")
 require("plugins.tree")
@@ -21,7 +20,7 @@ require("plugins.completion")
 require("plugins.easymotion")
 require("plugins.kommentary")
 require("plugins.todo")
--- require("plugins.formatter")
 
 -- Utils
 require("plugins.tmux")
+require("plugins.carbon-now")

@@ -60,6 +60,7 @@ local utils = {
 	"roxma/vim-tmux-clipboard",
 	-- required by gitsigns, todo-comments, telescope
 	"nvim-lua/plenary.nvim",
+	"ellisonleao/carbon-now.nvim",
 }
 
 -- Settings that need to go before loading the plugin
