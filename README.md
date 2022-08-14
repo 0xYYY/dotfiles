@@ -21,7 +21,7 @@ in the future.
 - [Mac UI/UX](#mac-uiux)
 - [TODO](#todo)
 
-## CLI Tools
+## CLI
 
 ### Setup
 
@@ -32,13 +32,15 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### Utilities
+### CLI Tools
 
 ```bash
 brew install asciinema gh glow jq tmux
 brew install cmatrix figlet lolcat nyancat  # just for fun!
 figlet hello, world\! | lolcat
 ```
+
+More CLI tools can be found in the [Rust section](#more-cli-tools-in-rust).
 
 ### System Info
 
