@@ -7,10 +7,11 @@ zstyle ':omz:update' mode auto
 
 # zvm
 function zvm_config() {
-  ZVM_VI_ESCAPE_BINDKEY=jk
-  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+    ZVM_VI_ESCAPE_BINDKEY=jk
+    ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+    ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 }
+zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search" "bindkey '^r' _atuin_search_widget")
 
 # plugins
 plugins=(extract fd git tmux ripgrep rust yarn zoxide zsh-vi-mode)
@@ -19,10 +20,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 ## General
-
-# bindkeys
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
 
 # environment variables
 export SHELL=/bin/zsh
