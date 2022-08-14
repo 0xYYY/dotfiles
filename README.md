@@ -174,7 +174,7 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 
 ## TODO
 
-- [] NeoVim LSP configs for
-  - [] Python
-  - [] TypeScript
-  - [] Solidity
+- [ ] NeoVim LSP configs for
+  - [ ] Python
+  - [ ] TypeScript
+  - [ ] Solidity
