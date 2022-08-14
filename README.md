@@ -6,8 +6,6 @@ This repo currently only contains dotfiles for Mac setup, may update for other O
 in the future.
 
 - [CLI Tools](#cli-tools)
-  - [Setup](#setup)
-  - [Utilities](#utilities)
 - [System Info](#system-info)
 - [Dotfiles](#dotfiles-1)
 - [Terminal](#terminal)
@@ -16,13 +14,10 @@ in the future.
   - [Tmux](#tmux)
 - [Programming Languages](#programming-languages)
   - [Rust](#rust)
-    - [More CLI Tools in Rust](#more-cli-tools-in-rust)
   - [Python](#python)
   - [NodeJS](#nodejs)
   - [Solidity](#solidity)
 - [NeoVim](#neovim)
-  - [Setup](#setup-1)
-  - [LSP Tools](#lsp-tools)
 - [Mac UI/UX](#mac-uiux)
 - [TODO](#todo)
 
@@ -45,7 +40,7 @@ brew install cmatrix figlet lolcat nyancat  # just for fun!
 figlet hello, world\! | lolcat
 ```
 
-## System Info
+### System Info
 
 ```bash
 brew install neofetch
