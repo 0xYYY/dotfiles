@@ -5,12 +5,13 @@ export ZSH=$HOME/.oh-my-zsh
 # auto-update
 zstyle ':omz:update' mode auto
 
-# plugins
 # zvm
 function zvm_config() {
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 }
-plugins=(git tmux extract fd ripgrep rust zoxide yarn)
+
+# plugins
+plugins=(extract fd git tmux ripgrep rust yarn zoxide zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -22,7 +23,6 @@ bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
 
 # environment variables
-# export USER=dev
 export SHELL=/bin/zsh
 export EDITOR=nvim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -35,33 +35,6 @@ alias ll="exa --long"
 alias lla="exa --long --all"
 alias lt="exa --tree --long"
 alias lta="exa --tree --long --all"
-
-# fzf
-# export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-# _gen_fzf_default_opts() {
-#     local base03="#002b36"
-#     local base02="#073642"
-#     local base01="#586e75"
-#     local base00="#657b83"
-#     local base0="#839496"
-#     local base1="#93a1a1"
-#     local base2="#eee8d5"
-#     local base3="#fdf6e3"
-#     local yellow="#b58900"
-#     local orange="#cb4b16"
-#     local red="#dc322f"
-#     local magenta="#d33682"
-#     local violet="#6c71c4"
-#     local blue="#268bd2"
-#     local cyan="#2aa198"
-#     local green="#859900"
-# 
-#     export FZF_DEFAULT_OPTS="
-#     --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-#     --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow 
-#     --preview 'bat --color=always --style=numbers --line-range=:500 {}' "
-# }
-# _gen_fzf_default_opts
 
 # tsc
 tsc () {
@@ -81,6 +54,9 @@ tsc () {
         fi
     fi
 }
+
+# autin
+eval "$(atuin init zsh)"
 
 # starship
 eval "$(starship init zsh)"
@@ -104,10 +80,3 @@ mamba activate
 
 # volta
 export VOLTA_HOME="$HOME/.volta"
-
-# autin
-eval "$(atuin init zsh)"
-
-# zvm
-zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search")
-
