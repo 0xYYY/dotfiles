@@ -17,9 +17,10 @@ require("plugins.symbols-outline")
 require("plugins.completion")
 
 -- Editing
-require("plugins.easymotion")
+require("plugins.hop")
 require("plugins.kommentary")
 require("plugins.todo")
+require("plugins.specs")
 
 -- Utils
 require("plugins.tmux")
