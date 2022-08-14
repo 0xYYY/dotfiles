@@ -74,8 +74,6 @@ brew tap homebrew/cask-fonts
 brew install font-jetbrains-mono-nerd-font codicon
 ```
 
-![terminal](images/terminal.png)
-
 ### Oh My Zsh
 
 ```bash
@@ -94,6 +92,8 @@ git clone https://github.com/jeffreytse/zsh-vi-mode \
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 bash $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 ```
+
+![terminal](images/terminal.png)
 
 ## Programming Languages
 
@@ -177,6 +177,10 @@ brew install rust-analyzer shellcheck shfmt stylua
 yarn global add prettier prettier-plugin-solidity typescript typescript-language-server
 mamba install black
 ```
+
+### Plugins
+
+The list of plugins can be found [here](neovim/.config/nvim/lua/settings/plugins.lua).
 
 ![neovim](images/neovim.png)
 
