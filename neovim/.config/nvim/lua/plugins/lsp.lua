@@ -20,9 +20,12 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { "rust-tools", "pyright", "tsserver", "bashls" }
+local servers = { require("rust-tools"), "pyright", "tsserver", "bashls" }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
+	if type(lsp) == "string" then
+		lsp = nvim_lsp[lsp]
+	end
+	lsp.setup({
 		on_attach = on_attach,
 		flags = {
 			debounce_text_changes = 150,
@@ -41,7 +44,7 @@ null_ls.setup({
 		-- python
 		null_ls.builtins.formatting.isort,
 		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.pylint,
+		null_ls.builtins.diagnostics.pylint,
 		null_ls.builtins.diagnostics.pydocstyle,
 		-- bash
 		null_ls.builtins.formatting.shfmt,
