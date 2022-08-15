@@ -33,7 +33,6 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
--- require().setup({ server = { on_attach = on_attach, capabilities = capabilities } })
 
 -- null-ls
 null_ls.setup({

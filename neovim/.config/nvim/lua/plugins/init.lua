@@ -7,6 +7,7 @@ require("plugins.tree")
 require("plugins.telescope")
 require("plugins.trouble")
 require("plugins.neoscroll")
+require("plugins.fidget")
 
 -- Language
 require("plugins.treesitter")

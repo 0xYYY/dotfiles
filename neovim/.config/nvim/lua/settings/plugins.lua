@@ -11,7 +11,7 @@ local ui = {
 	"norcalli/nvim-colorizer.lua",
 	"romgrk/barbar.nvim",
 	"nvim-lualine/lualine.nvim",
-	"arkav/lualine-lsp-progress",
+	-- "arkav/lualine-lsp-progress",
 	"lewis6991/gitsigns.nvim",
 	"kyazdani42/nvim-tree.lua",
 	"nvim-telescope/telescope.nvim",
@@ -21,6 +21,7 @@ local ui = {
 	},
 	"folke/trouble.nvim",
 	"karb94/neoscroll.nvim",
+	"j-hui/fidget.nvim",
 }
 
 local language = {
