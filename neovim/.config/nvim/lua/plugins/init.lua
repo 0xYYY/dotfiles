@@ -24,5 +24,6 @@ require("plugins.todo")
 require("plugins.specs")
 
 -- Utils
+require("plugins.filetype")
 require("plugins.tmux")
 require("plugins.carbon-now")

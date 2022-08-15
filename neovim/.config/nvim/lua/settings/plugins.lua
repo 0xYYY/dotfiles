@@ -58,10 +58,10 @@ local editing = {
 }
 
 local utils = {
+	"nvim-lua/plenary.nvim",
+	"nathom/filetype.nvim",
 	"aserowy/tmux.nvim",
 	"roxma/vim-tmux-clipboard",
-	-- required by gitsigns, todo-comments, telescope
-	"nvim-lua/plenary.nvim",
 	"ellisonleao/carbon-now.nvim",
 }
 
