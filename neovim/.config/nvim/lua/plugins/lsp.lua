@@ -20,7 +20,7 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { "tsserver", "pyright", "bashls" }
+local servers = { "rust-tools", "pyright", "tsserver", "bashls" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = on_attach,
@@ -30,18 +30,24 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
-require("rust-tools").setup({ server = { on_attach = on_attach, capabilities = capabilities } })
+-- require().setup({ server = { on_attach = on_attach, capabilities = capabilities } })
 
 -- null-ls
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier.with({
 			extra_filetypes = { "solidity", "toml" },
 		}),
-		null_ls.builtins.formatting.shellharden,
+		-- python
+		null_ls.builtins.formatting.isort,
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.pylint,
+		null_ls.builtins.diagnostics.pydocstyle,
+		-- bash
 		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.formatting.shellharden,
+		-- lua
+		null_ls.builtins.formatting.stylua,
 	},
 	on_attach = on_attach,
 })

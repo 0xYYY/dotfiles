@@ -176,7 +176,7 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 
 ```bash
 brew install rust-analyzer shfmt shellharden stylua
-mamba install black pyright
+mamba install black isort pydocstyle pylint pyright
 yarn global add bash-language-server prettier prettier-plugin-solidity typescript typescript-language-server
 ```
 
