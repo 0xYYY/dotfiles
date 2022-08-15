@@ -56,7 +56,7 @@ neofetch
 Clone this repo and use `stow` to link the config files to their respective locations.
 
 ```bash
-brew isntall stow
+brew install stow
 git clone https://github.com/0xYYY/dotfiles .dotfiles
 cd .dotfiles && stow $(ls -d \*/) && cd ~
 ```
@@ -73,7 +73,7 @@ configuration, and support for tabs and ligature (which
 brew tap wez/wezterm
 brew install --cask wez/wezterm/wezterm
 brew tap homebrew/cask-fonts
-brew install font-jetbrains-mono-nerd-font codicon
+brew install font-jetbrains-mono-nerd-font font-codicon
 ```
 
 ### Oh My Zsh

@@ -54,7 +54,7 @@ tsc () {
     fi
 }
 
-# autin
+# atuin
 eval "$(atuin init zsh)"
 
 # starship
