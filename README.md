@@ -175,9 +175,9 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 ### LSP Tools
 
 ```bash
-brew install rust-analyzer shellcheck shfmt shellharden stylua
+brew install rust-analyzer shfmt shellharden stylua
 mamba install black
-yarn global add prettier prettier-plugin-solidity typescript typescript-language-server
+yarn global add bash-language-server prettier prettier-plugin-solidity typescript typescript-language-server
 ```
 
 ### Plugins

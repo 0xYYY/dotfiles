@@ -20,7 +20,7 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- local servers = { "gopls", "tsserver", "pyright", "bashls" }
+local servers = { "tsserver", "pyright", "bashls" }
 local servers = {}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
@@ -41,8 +41,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.prettier.with({
 			extra_filetypes = { "solidity", "toml" },
 		}),
-		null_ls.builtins.diagnostics.shellcheck,
-		null_ls.builtins.code_actions.shellcheck,
 		null_ls.builtins.formatting.shellharden,
 		null_ls.builtins.formatting.shfmt,
 	},
