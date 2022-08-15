@@ -52,7 +52,7 @@ cmp.setup({
 			vim_item.menu = (
 				({
 					buffer = " ",
-					nvim_lsp = "突",
+					nvim_lsp = "",
 					treesitter = "",
 					vsnip = "",
 					path = "",
