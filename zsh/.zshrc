@@ -34,6 +34,7 @@ alias ll="exa --long"
 alias lla="exa --long --all"
 alias lt="exa --tree --long"
 alias lta="exa --tree --long --all"
+alias rip="rip --graveyard ~/.local/share/graveyard"
 
 # tsc
 tsc () {
