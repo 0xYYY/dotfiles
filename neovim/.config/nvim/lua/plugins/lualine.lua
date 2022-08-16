@@ -7,18 +7,38 @@ solarized_dark.normal.b.fg = colors.base1
 solarized_dark.insert.a.bg = colors.yellow
 solarized_dark.command = { a = { fg = colors.base03, bg = colors.cyan, gui = "bold" } }
 
+-- LSP component (null-ls sources extracted)
+local null_ls_sources = function()
+	local ft = vim.bo.filetype
+	local client_names = {}
+	for i, s in ipairs(require("null-ls").get_sources()) do
+		if s.filetypes[ft] then
+			table.insert(client_names, s.name)
+		end
+	end
+
+	return client_names
+end
+
 local lspclient = {
 	function()
 		local clients = vim.lsp.buf_get_clients()
-		local client_names = ""
+		local client_names = {}
 		for _, client in pairs(clients) do
-			if string.len(client_names) < 1 then
-				client_names = client.name
+			if client.name == "null-ls" then
+				vim.list_extend(client_names, null_ls_sources())
 			else
-				client_names = client_names .. " " .. client.name
+				table.insert(client_names, client.name)
 			end
 		end
-		return client_names
+
+		local first_few = vim.list_slice(client_names, 1, 2)
+		local extra_count = #client_names - 2
+		local output = table.concat(first_few, "")
+		if extra_count > 0 then
+			output = output .. " +" .. extra_count
+		end
+		return output
 	end,
 	cond = function()
 		return #vim.lsp.buf_get_clients() > 0
