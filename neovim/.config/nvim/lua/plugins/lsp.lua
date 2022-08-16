@@ -39,6 +39,7 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.prettier.with({
 			extra_filetypes = { "solidity", "toml" },
+			extra_args = { "--tab-width", "4" },
 		}),
 		-- python
 		null_ls.builtins.formatting.isort,
