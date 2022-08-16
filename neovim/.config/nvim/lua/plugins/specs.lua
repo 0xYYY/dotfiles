@@ -22,4 +22,4 @@ require("specs").setup({
 })
 
 utils.map("n", "n", 'n:lua require("specs").show_specs()<CR>')
-utils.map("n", "N", 'n:lua require("specs").show_specs()<CR>')
+utils.map("n", "N", 'N:lua require("specs").show_specs()<CR>')
