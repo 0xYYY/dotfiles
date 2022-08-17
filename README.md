@@ -5,21 +5,21 @@
 This repo currently only contains dotfiles for Mac setup, may update for other OS, e.g. ArchLinux,
 in the future.
 
-- [CLI Tools](#cli-tools)
-- [System Info](#system-info)
-- [Dotfiles](#dotfiles-1)
-- [Terminal](#terminal)
-  - [WezTerm](#wezterm)
-  - [Oh My Zsh](#oh-my-zsh)
-  - [Tmux](#tmux)
-- [Programming Languages](#programming-languages)
-  - [Rust](#rust)
-  - [Python](#python)
-  - [NodeJS](#nodejs)
-  - [Solidity](#solidity)
-- [NeoVim](#neovim)
-- [Mac UI/UX](#mac-uiux)
-- [TODO](#todo)
+-   [CLI Tools](#cli-tools)
+-   [System Info](#system-info)
+-   [Dotfiles](#dotfiles-1)
+-   [Terminal](#terminal)
+    -   [WezTerm](#wezterm)
+    -   [Oh My Zsh](#oh-my-zsh)
+    -   [Tmux](#tmux)
+-   [Programming Languages](#programming-languages)
+    -   [Rust](#rust)
+    -   [Python](#python)
+    -   [NodeJS](#nodejs)
+    -   [Solidity](#solidity)
+-   [NeoVim](#neovim)
+-   [Mac UI/UX](#mac-uiux)
+-   [TODO](#todo)
 
 ## CLI
 
@@ -176,8 +176,8 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 
 ```bash
 brew install rust-analyzer shfmt shellharden stylua
-mamba install black isort pydocstyle pylint pyright
-yarn global add bash-language-server prettier prettier-plugin-solidity typescript typescript-language-server
+mamba install black isort pydocstyle pylint
+yarn global add bash-language-server prettier prettier-plugin-solidity pyright typescript typescript-language-server
 ```
 
 ### Plugins
@@ -190,13 +190,13 @@ The list of plugins can be found [here](neovim/.config/nvim/lua/settings/plugins
 
 Not actually part of the dotfiles, but useful applications for improving Mac UI/UX.
 
-- [AltTab](https://alt-tab-macos.netlify.app)
-- [BetterDisplay](https://github.com/waydabber/BetterDisplay#readme)
-- [Rectengle](https://rectangleapp.com)
+-   [AltTab](https://alt-tab-macos.netlify.app)
+-   [BetterDisplay](https://github.com/waydabber/BetterDisplay#readme)
+-   [Rectengle](https://rectangleapp.com)
 
 ## TODO
 
-- [ ] NeoVim LSP configs for
-  - [ ] Python
-  - [ ] TypeScript
-  - [ ] Solidity
+-   [ ] NeoVim LSP configs for
+    -   [ ] Python
+    -   [ ] TypeScript
+    -   [ ] Solidity

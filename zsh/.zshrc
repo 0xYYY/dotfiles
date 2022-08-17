@@ -57,6 +57,7 @@ tsc () {
 
 # atuin
 eval "$(atuin init zsh)"
+# atuin import auto
 
 # starship
 eval "$(starship init zsh)"
