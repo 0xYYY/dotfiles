@@ -78,5 +78,19 @@ unset __mamba_setup
 alias mamba="micromamba"
 mamba activate
 
+# sort the exported mamba environment file, for better git diff
+mambaenv () {
+    local ENV_FILE=${1:-"./environment.yml"}
+
+    mamba env export > $ENV_FILE
+    cutoff=$(rg -n dependencies $ENV_FILE | choose -f ':' 0)
+
+    tmpfile=$(mktemp /tmp/mamba-env.XXXXXX)
+    head -n $cutoff $ENV_FILE >>$tmpfile
+    tail -n +$((cutoff + 1)) $ENV_FILE | sort >>$tmpfile
+
+    mv $tmpfile $ENV_FILE
+}
+
 # volta
 export VOLTA_HOME="$HOME/.volta"
