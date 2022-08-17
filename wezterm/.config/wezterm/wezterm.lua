@@ -55,11 +55,11 @@ return {
 	},
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
-	tab_and_split_indices_are_zero_based = true,
 	send_composed_key_when_left_alt_is_pressed = false,
 	send_composed_key_when_right_alt_is_pressed = false,
 	default_cursor_style = "BlinkingBlock",
 	cursor_blink_rate = 800,
 	cursor_blink_ease_in = "Constant",
 	cursor_blink_ease_out = "Constant",
+	audible_bell = "Disabled",
 }
