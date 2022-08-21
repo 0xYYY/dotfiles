@@ -120,7 +120,7 @@ I like to explore CLI tools implemented in Rust, since
 
 ```bash
 cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui heh hexyl huniq jless \
-    jql just macchina procs pueue ripgrep rm-improved rnr sd skim starship tokei tuc volta \
+    jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship tokei tuc volta \
     watchexec-cli xcp xh xsv zoxide
 ```
 
@@ -197,6 +197,6 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 ## TODO
 
 -   [ ] NeoVim LSP configs for
-    -   [ ] Python
-    -   [ ] TypeScript
+    -   [x] Python
+    -   [x] TypeScript
     -   [ ] Solidity
