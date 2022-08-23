@@ -153,7 +153,7 @@ Install Solidity and [solc-select](https://github.com/crytic/solc-select) for ve
 pip install solc-select
 solc-select install $(solc-select install | tail -1)
 curl -L https://foundry.paradigm.xyz | bash
-foundryup
+fup
 ```
 
 ## NeoVim

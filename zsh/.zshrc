@@ -15,6 +15,8 @@ zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-li
 
 # plugins
 plugins=(extract fd git tmux ripgrep rust yarn zoxide zsh-vi-mode)
+FOUNDRY_PLUGIN_DIR=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/foundry
+fpath+=$FOUNDRY_PLUGIN_DIR
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,3 +98,16 @@ mambaenv () {
 
 # volta
 export VOLTA_HOME="$HOME/.volta"
+
+# foundry
+fup () {
+    if ! command -v foundryup &> /dev/null; then
+        echo "Install foundryup first: https://getfoundry.sh"
+    else
+        foundryup "$@"
+        mkdir -p $FOUNDRY_PLUGIN_DIR
+        anvil com zsh > $FOUNDRY_PLUGIN_DIR/_anvil
+        cast com zsh > $FOUNDRY_PLUGIN_DIR/_cast
+        forge com zsh > $FOUNDRY_PLUGIN_DIR/_forge
+    fi
+}
