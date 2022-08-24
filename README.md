@@ -58,7 +58,7 @@ Clone this repo and use `stow` to link the config files to their respective loca
 ```bash
 brew install stow
 git clone https://github.com/0xYYY/dotfiles .dotfiles
-cd .dotfiles && stow $(ls -d \*/) && cd ~
+cd .dotfiles && stow $(ls -d */) && cd ~
 ```
 
 ## Terminal
