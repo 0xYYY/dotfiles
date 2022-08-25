@@ -44,6 +44,19 @@ require("nvim-tree").setup({
 		},
 		icons = {
 			webdev_colors = true,
+			symlink_arrow = "->",
+			glyphs = {
+				bookmark = "",
+				git = {
+					unstaged = "ﰣ",
+					staged = "",
+					unmerged = "",
+					renamed = "ﲖ",
+					untracked = "六",
+					deleted = "✗",
+					ignored = "◌",
+				},
+			},
 		},
 		highlight_git = true,
 		highlight_opened_files = "3",
