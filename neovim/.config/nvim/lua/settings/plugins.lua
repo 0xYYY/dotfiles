@@ -33,6 +33,7 @@ local language = {
 	"jose-elias-alvarez/null-ls.nvim",
 	"glepnir/lspsaga.nvim",
 	"lukas-reineke/lsp-format.nvim",
+	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	"folke/lsp-colors.nvim",
 	"simrat39/symbols-outline.nvim",
 	"simrat39/rust-tools.nvim",

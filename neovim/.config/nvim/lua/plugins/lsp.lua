@@ -55,6 +55,14 @@ null_ls.setup({
 	on_attach = on_attach,
 })
 
+-- lsp_lines
+require("lsp_lines").setup()
+vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = utils.darken(colors.red, 0.2), fg = colors.red })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = utils.darken(colors.yellow, 0.1), fg = colors.yellow })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = utils.darken(colors.blue, 0.1), fg = colors.blue })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = utils.darken(colors.cyan, 0.1), fg = colors.cyan })
+
 -- lsp-colors
 vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.red })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = colors.yellow })
