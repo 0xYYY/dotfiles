@@ -35,7 +35,7 @@ xcode-select --install
 ### CLI Tools
 
 ```bash
-brew install asciinema gh glow jq tmux yq
+brew install asciinema direnv gh glow jq tmux yq
 brew install cmatrix figlet lolcat nyancat  # just for fun!
 figlet hello, world\! | lolcat
 ```

@@ -39,7 +39,12 @@ alias lta="exa --tree --long --all"
 alias rip="rip --graveyard ~/.local/share/graveyard"
 alias ipy="ipython"
 
-# tsc
+FOUNDRY_BUILD_DIR=$HOME/repos/foundry/target/debug
+alias lanvil=$FOUNDRY_BUILD_DIR/anvil
+alias lcast=$FOUNDRY_BUILD_DIR/cast
+alias lforge=$FOUNDRY_BUILD_DIR/forge
+
+# tmux
 tsc () {
     if [ "$#" -ne 2 ]; then
         echo "Usage: $0 SESSION-NAME WORKING-DIRECTORY" >&2
@@ -57,6 +62,9 @@ tsc () {
         fi
     fi
 }
+
+# direnv
+eval "$(direnv hook zsh)"
 
 # atuin
 eval "$(atuin init zsh)"
