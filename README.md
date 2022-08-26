@@ -177,7 +177,8 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 ```bash
 brew install rust-analyzer shfmt shellharden stylua
 mamba install black isort pydocstyle pylint
-yarn global add bash-language-server prettier prettier-plugin-solidity pyright typescript typescript-language-server
+yarn global add bash-language-server prettier prettier-plugin-solidity pyright \
+    solidity-language-server typescript typescript-language-server
 ```
 
 ### Plugins
@@ -193,10 +194,3 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 -   [AltTab](https://alt-tab-macos.netlify.app)
 -   [BetterDisplay](https://github.com/waydabber/BetterDisplay#readme)
 -   [Rectengle](https://rectangleapp.com)
-
-## TODO
-
--   [ ] NeoVim LSP configs for
-    -   [x] Python
-    -   [x] TypeScript
-    -   [ ] Solidity
