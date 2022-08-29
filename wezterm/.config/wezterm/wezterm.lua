@@ -42,7 +42,7 @@ return {
 		["Solarized Dark"] = solarized_dark,
 	},
 	color_scheme = "Solarized Dark",
-	font = wezterm.font("JetBrainsMonoMedium Nerd Font"),
+	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" }),
 	font_size = 14,
 	initial_rows = 1000,
 	initial_cols = 1000,
