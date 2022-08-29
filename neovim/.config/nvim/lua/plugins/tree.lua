@@ -48,7 +48,7 @@ require("nvim-tree").setup({
 			glyphs = {
 				bookmark = "",
 				git = {
-					unstaged = "ﰣ",
+					unstaged = "~",
 					staged = "",
 					unmerged = "",
 					renamed = "ﲖ",
