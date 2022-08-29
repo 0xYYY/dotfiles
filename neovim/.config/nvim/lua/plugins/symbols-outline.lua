@@ -1,6 +1,6 @@
 local utils = require("utils")
 
-vim.g.symbols_outline = {
+require("symbols-outline").setup({
 	highlight_hovered_item = false,
 	show_guides = false,
 	auto_preview = false,
@@ -49,6 +49,6 @@ vim.g.symbols_outline = {
 		Operator = { icon = " ", hl = "TSOperator" },
 		TypeParameter = { icon = " ", hl = "TSParameter" },
 	},
-}
+})
 
 utils.map("n", "<Leader>/", ":SymbolsOutline<CR>")
