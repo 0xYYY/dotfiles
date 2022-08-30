@@ -128,9 +128,12 @@ require("lualine").setup({
 			{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 		},
 		lualine_c = { lspclient, "diagnostics" },
-		lualine_x = { "encoding", "fileformat", { "filetype", icon_only = true } },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
+		lualine_x = {
+			{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+			{ "filename", file_status = true, path = 1 },
+		},
+		lualine_y = { { "fileformat", separator = "", padding = { left = 1, right = 0 } }, "encoding" },
+		lualine_z = { { "location", separator = "", padding = { left = 1, right = 0 } }, "progress" },
 	},
 	inactive_sections = {
 		lualine_a = {},
