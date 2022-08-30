@@ -22,16 +22,21 @@ end
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local servers = { "bashls", "pyright", require("rust-tools"), "solidity_ls", "tsserver" }
 for _, lsp in ipairs(servers) do
-	if type(lsp) == "string" then
-		lsp = nvim_lsp[lsp]
-	end
-	lsp.setup({
+	local config = {
 		on_attach = on_attach,
 		flags = {
 			debounce_text_changes = 150,
 		},
 		capabilities = capabilities,
-	})
+	}
+	if type(lsp) == "string" then
+		-- lspconfig builtins
+		lsp = nvim_lsp[lsp]
+	else
+		-- rust-tools
+		config = { server = config }
+	end
+	lsp.setup(config)
 end
 
 -- null-ls
