@@ -61,8 +61,9 @@ null_ls.setup({
 })
 
 -- lsp_lines
-require("lsp_lines").setup()
-vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
+-- require("lsp_lines").setup()
+-- vim.keymap.set("", "<Leader>D", require("lsp_lines").toggle)
+-- vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = colors.darken(colors.red, 0.2), fg = colors.red })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = colors.darken(colors.yellow, 0.1), fg = colors.yellow })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = colors.darken(colors.blue, 0.1), fg = colors.blue })
@@ -164,7 +165,6 @@ saga.init_lsp_saga({
 })
 
 -- keymap
-local action = require("lspsaga.action")
 utils.map("n", "<Leader>d", "<cmd>Lspsaga preview_definition<CR>")
 utils.map("n", "<Leader>h", "<Cmd>Lspsaga signature_help<CR>")
 utils.map("n", "<Leader>H", "<cmd>Lspsaga hover_doc<CR>")
@@ -174,12 +174,13 @@ utils.map("n", "]d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 utils.map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
 utils.map("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
 -- scroll up/down preview
-vim.keymap.set("n", "<C-f>", function()
-	action.smart_scroll_with_saga(1)
-end, { silent = true })
-vim.keymap.set("n", "<C-b>", function()
-	action.smart_scroll_with_saga(-1)
-end, { silent = true })
+-- local action = require("lspsaga.action")
+-- vim.keymap.set("n", "<C-f>", function()
+-- 	action.smart_scroll_with_saga(1)
+-- end, { silent = true })
+-- vim.keymap.set("n", "<C-b>", function()
+-- 	action.smart_scroll_with_saga(-1)
+-- end, { silent = true })
 
 -- highlight
 vim.api.nvim_set_hl(0, "LspSagaWinbarSep", { fg = colors.base00 })
