@@ -20,7 +20,7 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { "bashls", "pyright", require("rust-tools"), "solidity_ls", "tsserver" }
+local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "solidity_ls", "tsserver" }
 for _, lsp in ipairs(servers) do
 	local config = {
 		on_attach = on_attach,
@@ -51,6 +51,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.diagnostics.pylint,
 		null_ls.builtins.diagnostics.pydocstyle,
+		-- go
+		null_ls.builtins.formatting.gofumpt,
+		-- null_ls.builtins.diagnostics.golangci_lint,
 		-- bash
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.shellharden,

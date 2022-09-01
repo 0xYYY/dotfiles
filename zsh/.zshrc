@@ -14,7 +14,7 @@ function zvm_config() {
 zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search" "bindkey '^r' _atuin_search_widget")
 
 # plugins
-plugins=(extract fd git tmux ripgrep rust yarn zoxide zsh-vi-mode)
+plugins=(extract fd git golang tmux ripgrep rust yarn zoxide zsh-vi-mode)
 FOUNDRY_PLUGIN_DIR=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/foundry
 fpath+=$FOUNDRY_PLUGIN_DIR
 
@@ -106,6 +106,11 @@ mambaenv () {
 
 # volta
 export VOLTA_HOME="$HOME/.volta"
+
+# goenv
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 
 # foundry
 fup () {

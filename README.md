@@ -145,6 +145,17 @@ volta install node
 volta install yarn
 ```
 
+### Go
+
+Install Go and [`goenv`](https://github.com/syndbg/goenv) for version management.
+
+```bash
+git clone https://github.com/syndbg/goenv.git ~/.goenv
+latest=$(goenv install -l | rg -v '(beta|rc)' | tail -1)
+goenv install $latest && goenv global $latest
+unset $latest
+```
+
 ### Solidity
 
 Install Solidity and [solc-select](https://github.com/crytic/solc-select) for version management.
@@ -175,10 +186,12 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 ### LSP Tools
 
 ```bash
-brew install rust-analyzer shfmt shellharden stylua
+brew install golangci-lint rust-analyzer shfmt shellharden stylua
 mamba install black isort pydocstyle pylint
 yarn global add bash-language-server prettier prettier-plugin-solidity pyright \
     solidity-language-server typescript typescript-language-server
+go install golang.org/x/tools/gopls@latest
+go install mvdan.cc/gofumpt@latest
 ```
 
 ### Plugins

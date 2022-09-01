@@ -2,6 +2,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.volta/bin:$PATH"
+export PATH="$HOME/.goenv/bin:$PATH"
 export PATH="$HOME/.foundry/bin:$PATH"
 
 # Homebrew
