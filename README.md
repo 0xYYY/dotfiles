@@ -193,4 +193,5 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 
 -   [AltTab](https://alt-tab-macos.netlify.app)
 -   [BetterDisplay](https://github.com/waydabber/BetterDisplay#readme)
+-   [BetterTouchTool](https://folivora.ai)
 -   [Rectengle](https://rectangleapp.com)
