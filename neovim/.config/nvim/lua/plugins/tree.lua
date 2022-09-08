@@ -6,7 +6,7 @@ utils.map("i", "<C-_>", "<ESC>:NvimTreeToggle<CR>")
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
 	hijack_cursor = true,
-	update_cwd = true,
+	sync_root_with_cwd = false,
 	diagnostics = {
 		enable = true,
 		icons = {

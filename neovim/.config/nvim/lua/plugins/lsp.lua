@@ -53,7 +53,7 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.pydocstyle,
 		-- go
 		null_ls.builtins.formatting.gofumpt,
-		-- null_ls.builtins.diagnostics.golangci_lint,
+		null_ls.builtins.diagnostics.golangci_lint,
 		-- bash
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.shellharden,
@@ -172,8 +172,8 @@ utils.map("n", "<Leader>d", "<cmd>Lspsaga preview_definition<CR>")
 utils.map("n", "<Leader>h", "<Cmd>Lspsaga signature_help<CR>")
 utils.map("n", "<Leader>H", "<cmd>Lspsaga hover_doc<CR>")
 utils.map("n", "<Leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>")
-utils.map("n", "[d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-utils.map("n", "]d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+utils.map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+utils.map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 utils.map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
 utils.map("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
 -- scroll up/down preview
