@@ -73,6 +73,11 @@ eval "$(atuin init zsh)"
 # starship
 eval "$(starship init zsh)"
 
+# cargo
+alias spark="cargo +nightly fmt --all && cargo +nightly clippy --all --all-features -- -D warnings"
+alias flint="cargo check --all && cargo test --all --all-features && cargo +nightly fmt -- --check && cargo +nightly clippy --all --all-features -- -D warnings"
+alias rock="spark && flint"
+
 # mamba
 export MAMBA_EXE="$HOME/.local/bin/micromamba";
 export MAMBA_ROOT_PREFIX="$HOME/.micromamba";
