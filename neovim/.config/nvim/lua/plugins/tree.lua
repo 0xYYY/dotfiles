@@ -7,19 +7,9 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
 	hijack_cursor = true,
 	sync_root_with_cwd = false,
-	diagnostics = {
-		enable = true,
-		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
-		},
-	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
-		ignore_list = {},
+		update_root = true,
 	},
 	view = {
 		width = 32,
@@ -66,6 +56,15 @@ require("nvim-tree").setup({
 		enable = true,
 		ignore = true,
 		timeout = 400,
+	},
+	diagnostics = {
+		enable = true,
+		icons = {
+			hint = "",
+			info = "",
+			warning = "",
+			error = "",
+		},
 	},
 })
 
