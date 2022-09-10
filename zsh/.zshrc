@@ -11,7 +11,11 @@ function zvm_config() {
     ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
     ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 }
-zvm_after_init_commands+=("bindkey '^P' up-line-or-search" "bindkey '^N' down-line-or-search" "bindkey '^r' _atuin_search_widget")
+zvm_after_init_commands+=(
+    "bindkey '^P' history-beginning-search-backward"
+    "bindkey '^N' history-beginning-search-forward"
+    "bindkey '^r' _atuin_search_widget"
+)
 
 # plugins
 plugins=(extract fd git golang tmux ripgrep rust yarn zoxide zsh-vi-mode)
