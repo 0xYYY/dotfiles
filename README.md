@@ -19,7 +19,6 @@ in the future.
     -   [Solidity](#solidity)
 -   [NeoVim](#neovim)
 -   [Mac UI/UX](#mac-uiux)
--   [TODO](#todo)
 
 ## CLI
 
