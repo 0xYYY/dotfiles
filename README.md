@@ -58,7 +58,7 @@ Clone this repo and use `stow` to link the config files to their respective loca
 ```bash
 brew install stow
 git clone https://github.com/0xYYY/dotfiles .dotfiles
-cd .dotfiles && stow $(ls -d */) && cd ~
+cd .dotfiles && stow $(ls -d */ | grep -v 'images\|cargo') && cd ~
 ```
 
 ## Terminal
@@ -108,6 +108,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --verbose
 rustup component add rust-src
 rustup toolchain install nightly
 cargo install sccache
+cd .dotfiles && stow cargo && cd ~
 ```
 
 #### More CLI Tools in Rust
@@ -120,7 +121,7 @@ I like to explore CLI tools implemented in Rust, since
 
 ```bash
 cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui heh hexyl huniq jless \
-    jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship tokei tuc volta \
+    jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship tokei tuc \
     watchexec-cli xcp xh xsv zoxide
 ```
 
@@ -131,7 +132,7 @@ management.
 
 ```bash
 curl -Ls https://micro.mamba.pm/api/micromamba/osx-arm64/latest | tar -xvj bin/micromamba
-mv bin/micromamba $HOME/.local
+mkdir -p $HOME/.local/bin && mv bin/micromamba $HOME/.local/bin && rm -r bin
 mamba install -n base python=3.10 ipython --yes
 ```
 
@@ -151,9 +152,9 @@ Install Go and [`goenv`](https://github.com/syndbg/goenv) for version management
 
 ```bash
 git clone https://github.com/syndbg/goenv.git ~/.goenv
-latest=$(goenv install -l | rg -v '(beta|rc)' | tail -1)
+latest=$(goenv install -l | rg -v '(beta|rc)' | tail -1 | tr -d ' ')
 goenv install $latest && goenv global $latest
-unset $latest
+unset latest
 ```
 
 ### Solidity
@@ -176,8 +177,8 @@ I'm using the nightly version of NeoVim (for `winbar` support, requires `neovim 
 
 ```bash
 brew install --HEAD neovim
-mamba install pynvim
-yarn install neovim
+pip install pynvim
+yarn global add neovim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
  .local/share/nvim/site/pack/packer/start/packer.nvim
 nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
