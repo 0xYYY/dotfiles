@@ -119,8 +119,8 @@ I like to explore CLI tools implemented in Rust, since
    starting points.
 
 ```bash
-cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui heh hexyl huniq jless \
-    jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship tokei tuc \
+cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui gping heh hexyl huniq \
+    jless jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship tokei tuc \
     watchexec-cli xcp xh xsv zoxide
 ```
 

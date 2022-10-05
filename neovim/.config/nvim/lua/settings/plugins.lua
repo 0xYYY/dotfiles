@@ -42,13 +42,15 @@ local language = {
 
 local completion = {
 	"hrsh7th/nvim-cmp",
-	"hrsh7th/vim-vsnip",
 	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-vsnip",
-	"ray-x/cmp-treesitter",
+	"hrsh7th/cmp-nvim-lsp-signature-help",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-cmdline",
+	"ray-x/cmp-treesitter",
+	"L3MON4D3/LuaSnip",
+	"saadparwaiz1/cmp_luasnip",
+	"rafamadriz/friendly-snippets",
 }
 
 local editing = {
