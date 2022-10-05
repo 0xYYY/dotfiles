@@ -186,7 +186,7 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 ### LSP Tools
 
 ```bash
-brew install golangci-lint rust-analyzer shfmt shellharden stylua
+brew install golangci-lint lua-language-server rust-analyzer shfmt shellharden stylua
 mamba install black isort pydocstyle pylint
 yarn global add bash-language-server prettier prettier-plugin-solidity pyright \
     solidity-language-server typescript typescript-language-server

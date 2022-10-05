@@ -20,7 +20,7 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "solidity_ls", "tsserver" }
+local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "sumneko_lua", "solidity_ls", "tsserver" }
 for _, lsp in ipairs(servers) do
 	local config = {
 		on_attach = on_attach,
@@ -32,6 +32,28 @@ for _, lsp in ipairs(servers) do
 	if type(lsp) == "string" then
 		-- lspconfig builtins
 		lsp = nvim_lsp[lsp]
+		if lsp == "sumneko_lua" then
+			config.settings = {
+				Lua = {
+					runtime = {
+						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+						version = "LuaJIT",
+					},
+					diagnostics = {
+						-- Get the language server to recognize the `vim` global
+						globals = { "vim" },
+					},
+					workspace = {
+						-- Make the server aware of Neovim runtime files
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+					-- Do not send telemetry data containing a randomized but unique identifier
+					telemetry = {
+						enable = false,
+					},
+				},
+			}
+		end
 	else
 		-- rust-tools
 		config = { server = config }
