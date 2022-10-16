@@ -133,3 +133,14 @@ fup () {
         forge com zsh > $FOUNDRY_PLUGIN_DIR/_forge
     fi
 }
+
+# Google Cloud SDK
+GCLOUD_DIR=$HOME/Packages/google-cloud-sdk
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f ${GCLOUD_DIR}"/path.zsh.inc" ]; then
+    . ${GCLOUD_DIR}"/path.zsh.inc"
+fi
+# The next line enables shell command completion for gcloud.
+if [ -f ${GCLOUD_DIR}"/completion.zsh.inc" ]; then
+    . ${GCLOUD_DIR}/"completion.zsh.inc"
+fi
