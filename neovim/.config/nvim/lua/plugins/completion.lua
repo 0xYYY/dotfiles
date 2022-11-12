@@ -38,7 +38,7 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        -- ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set select to false to only confirm explicitly selected items.
+        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set select to false to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
@@ -126,16 +126,16 @@ cmp.setup.cmdline(":", {
 })
 
 -- Highlight Group
-cmd("autocmd VimEnter * highlight Pmenu guifg=#073642 guibg=#002b36")
-cmd("autocmd VimEnter * highlight PmenuSel guifg=#002b36 guibg=#b58900")
-cmd("autocmd VimEnter * highlight PmenuSbar guifg=#073642 guibg=#002b36")
-cmd("autocmd VimEnter * highlight PmenuThumb guifg=#586e75 guibg=#002b36")
+vim.cmd("autocmd VimEnter * highlight Pmenu guifg=#073642 guibg=#002b36")
+vim.cmd("autocmd VimEnter * highlight PmenuSel guifg=#002b36 guibg=#b58900")
+vim.cmd("autocmd VimEnter * highlight PmenuSbar guifg=#073642 guibg=#002b36")
+vim.cmd("autocmd VimEnter * highlight PmenuThumb guifg=#586e75 guibg=#002b36")
 
-cmd("autocmd VimEnter * highlight CmpItemAbbr guifg=#073642 guibg=#839496")
-cmd("autocmd VimEnter * highlight CmpItemKind guifg=#073642 guibg=#2aa198")
-cmd("autocmd VimEnter * highlight CmpItemMenu guifg=#073642 guibg=#657b83")
-cmd("autocmd VimEnter * highlight CmpItemAbbrMatch guifg=#073642 guibg=#268bd2")
-cmd("autocmd VimEnter * highlight CmpItemAbbrMatchFuzzy guifg=#073642 guibg=#268bd2")
+vim.cmd("autocmd VimEnter * highlight CmpItemAbbr guifg=#073642 guibg=#839496")
+vim.cmd("autocmd VimEnter * highlight CmpItemKind guifg=#073642 guibg=#2aa198")
+vim.cmd("autocmd VimEnter * highlight CmpItemMenu guifg=#073642 guibg=#657b83")
+vim.cmd("autocmd VimEnter * highlight CmpItemAbbrMatch guifg=#073642 guibg=#268bd2")
+vim.cmd("autocmd VimEnter * highlight CmpItemAbbrMatchFuzzy guifg=#073642 guibg=#268bd2")
 
 -- LuaSnip
 require("luasnip.loaders.from_vscode").lazy_load()

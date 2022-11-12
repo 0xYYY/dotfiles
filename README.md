@@ -209,3 +209,7 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 -   [BetterTouchTool](https://folivora.ai)
 -   [Raycast](https://www.raycast.com)
 -   [Rectengle](https://rectangleapp.com)
+
+## License
+
+Dual licensed under either [MIT License](./LICENSE-MIT) or [Apache License, Version 2.0](./LICENSE-APACHE).
