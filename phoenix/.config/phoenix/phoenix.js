@@ -36,7 +36,9 @@ Event.on("screensDidChange", () => {
         if (app === undefined) return;
 
         const frame = frames.get(screenId);
-        if (frame === undefined) return;
+        if (frame === undefined) {
+            frame = Screen.main().frame();
+        }
 
         for (win of app.windows()) {
             win.setFrame(frame);
