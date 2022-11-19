@@ -15,9 +15,6 @@ config[midScreenId] = ["Safari", "WezTerm"];
 config[rightScreenId] = ["Firefox", "Telegram"];
 
 Event.on("screensDidChange", () => {
-    console.log(
-        "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-    );
     // get all screen visible frames
     let frames = new Map();
     for (screen of Screen.all()) {
@@ -67,5 +64,11 @@ Event.on("screensDidChange", () => {
         for (const app of apps) {
             setWindowScreen(app, screen);
         }
+    }
+
+    // focus on Safari
+    let safari = App.get("Safari");
+    if (safari !== undefined) {
+        safari.focus();
     }
 });
