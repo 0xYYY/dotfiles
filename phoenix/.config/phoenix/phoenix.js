@@ -1,5 +1,3 @@
-const { execSync } = require("child_process");
-
 Phoenix.set({
     daemon: true,
     openAtLogin: true,
@@ -17,26 +15,44 @@ config[midScreenId] = ["Safari", "WezTerm"];
 config[rightScreenId] = ["Firefox", "Telegram"];
 
 Event.on("screensDidChange", () => {
+    console.log(
+        "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    );
     // get all screen visible frames
     let frames = new Map();
     for (screen of Screen.all()) {
         frames.set(screen.identifier(), screen.visibleFrame());
     }
+    console.log("available screen frames: ", frames);
 
     // set screen arrangement
     if (frames.has(midScreenId)) {
-        execSync(
-            '/opt/homebrew/bin/displayplacer "id:08C153AD-75E3-44CE-948A-26CA0346FA3C+EF65AB8A-CAA9-4AA7-9AFC-D5FD59BE7267 res:1920x1080 hz:60 color_depth:4 scaling:on origin:(0,0) degree:0" "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1470x956 hz:60 color_depth:8 scaling:on origin:(-1470,124) degree:0" "id:E27ED4C0-F62A-4359-9E3E-C29873EAE0BF res:1080x1920 hz:75 color_depth:4 scaling:off origin:(1920,-166) degree:0"'
+        Task.run(
+            "/opt/homebrew/bin/displayplacer",
+            [
+                "id:08C153AD-75E3-44CE-948A-26CA0346FA3C+EF65AB8A-CAA9-4AA7-9AFC-D5FD59BE7267 res:1920x1080 hz:60 color_depth:4 scaling:on origin:(0,0) degree:0",
+                "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1470x956 hz:60 color_depth:8 scaling:on origin:(-1470,124) degree:0",
+                "id:E27ED4C0-F62A-4359-9E3E-C29873EAE0BF res:1080x1920 hz:75 color_depth:4 scaling:off origin:(1920,-166) degree:0",
+            ],
+            (task) => {
+                console.log(
+                    `displaycer: [status] ${task.status} [stdout] ${task.output} [stderr] ${task.error}`
+                );
+            }
         );
     }
 
     // move all windows of an app to a specified screen
     function setWindowScreen(appName, screenId) {
         const app = App.get(appName);
-        if (app === undefined) return;
+        if (app === undefined) {
+            console.log(`app [${app}] not found`);
+            return;
+        }
 
         const frame = frames.get(screenId);
         if (frame === undefined) {
+            console.log(`screen [${screenId}] not found, fall back to main`);
             frame = Screen.main().frame();
         }
 
