@@ -39,7 +39,7 @@ Key.on("s", ["command", "control", "shift"], () => {
     saveLayout();
 });
 
-const DISPLAYCER_PATH = "/opt/homebrew/bin/displayplacer";
+const DISPLAYCER = "/opt/homebrew/bin/displayplacer";
 
 // apply stored layout
 function applyLayout() {
@@ -47,7 +47,7 @@ function applyLayout() {
     if (layout === undefined) return;
 
     // apply screen arrangement
-    Task.run(DISPLAYCER_PATH, layout.screenArrangement);
+    Task.run(DISPLAYCER, layout.screenArrangement);
 
     // apply window positions
     for (const win of Window.all({ visible: true })) {
@@ -58,4 +58,40 @@ function applyLayout() {
 // "⌘⌃⇧ + d" to apply layout
 Key.on("d", ["command", "control", "shift"], () => {
     applyLayout();
+});
+
+const OPEN = "/usr/bin/open";
+const PGREP = "/usr/bin/pgrep";
+const PKILL = "/usr/bin/pkill";
+// both the actual physical screen and dummy one should be listed
+const BETTER_DISPLAY_SCREEN_IDS = [
+    "08C153AD-75E3-44CE-948A-26CA0346FA3C",
+    "EF65AB8A-CAA9-4AA7-9AFC-D5FD59BE7267",
+];
+
+// start/quit BetterDisplay
+// NOTE: running process of BetterDisplay still shows its old name, BetterDummy
+function toggleBetterDisplay() {
+    // check if one of the active screen is in the configured list
+    const shouldOpen = Screen.all().reduce(
+        (r, s) => r || BETTER_DISPLAY_SCREEN_IDS.includes(s.identifier()),
+        false
+    );
+
+    if (shouldOpen) {
+        // start BetterDisplay if it's not running already
+        Task.run(PGREP, ["BetterDummy"], (task) => {
+            if (task.status !== 0) {
+                Task.run(OPEN, ["-a", "BetterDisplay"]);
+            }
+        });
+    } else {
+        // quit BetterDisplay if none of the screens requires it
+        Task.run(PKILL, ["BetterDummy"]);
+    }
+}
+
+// toggle BetterDisplay when screens are (dis)connected
+Event.on("screensDidChange", () => {
+    toggleBetterDisplay();
 });
