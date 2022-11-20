@@ -3,133 +3,59 @@ Phoenix.set({
     openAtLogin: true,
 });
 
-// unique identifier of screens, can be obtained from `displayplacer list`
-const leftScreenId = "37D8832A-2D66-02CA-B9F7-8F30A301B230";
-const midScreenId = "08C153AD-75E3-44CE-948A-26CA0346FA3C";
-const rightScreenId = "E27ED4C0-F62A-4359-9E3E-C29873EAE0BF";
+// generate unique key given attached screens
+function getScreenLayoutKey() {
+    let screenIds = Screen.all().map((s) => s.identifier());
+    screenIds.sort();
+    return screenIds.join("|");
+}
 
-// app screen allocation configuration
-const config = new Map();
-config[leftScreenId] = ["Mail", "Reminders", "Calendar", "Spotify"];
-config[midScreenId] = ["Safari", "WezTerm"];
-config[rightScreenId] = ["Firefox", "Telegram"];
+// save current screen layout and window positions
+function saveLayout() {
+    Task.run("/opt/homebrew/bin/displayplacer", ["list"], (task) => {
+        const stdout = task.output.trim();
+        const lastIndex = stdout.lastIndexOf("\n");
+        const lastLine = stdout.slice(lastIndex + 1);
+        const screenArrangement = lastLine
+            .split('"')
+            .filter((x) => x.trim() !== "")
+            .slice(1);
+        Storage.set(getScreenLayoutKey(), {
+            screenArrangement: screenArrangement,
+            windowPositions: Object.fromEntries(
+                Window.all({ visible: true }).map((w) => [w.hash(), w.frame()])
+            ),
+        });
+    });
+}
 
-Key.on("D", ["command", "control"], () => {
-    // get all screen visible frames
-    let frames = new Map();
-    for (screen of Screen.all()) {
-        frames.set(screen.identifier(), screen.visibleFrame());
-    }
-    console.log(
-        "available screen frames: ",
-        Array.from(frames.keys()).join(", ")
-    );
-
-    // set screen arrangement
-    if (frames.has(midScreenId)) {
-        Task.run(
-            "/opt/homebrew/bin/displayplacer",
-            [
-                "id:08C153AD-75E3-44CE-948A-26CA0346FA3C+EF65AB8A-CAA9-4AA7-9AFC-D5FD59BE7267 res:1920x1080 hz:60 color_depth:4 scaling:on origin:(0,0) degree:0",
-                "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1470x956 hz:60 color_depth:8 scaling:on origin:(-1470,124) degree:0",
-                "id:E27ED4C0-F62A-4359-9E3E-C29873EAE0BF res:1080x1920 hz:75 color_depth:4 scaling:off origin:(1920,-220) degree:0",
-            ],
-            (task) => {
-                console.log(
-                    `displaycer: [status] ${task.status} [stdout] ${task.output} [stderr] ${task.error}`
-                );
-            }
-        );
-    }
-
-    // move all windows of an app to a specified screen
-    function setWindowScreen(appName, screenId) {
-        let app = App.get(appName);
-        if (app === undefined) {
-            console.log(`app [${app}] not found`);
-            return;
-        }
-
-        let frame = frames.get(screenId);
-        if (frame === undefined) {
-            console.log(`screen [${screenId}] not found, fall back to main`);
-            frame = Screen.main().frame();
-        }
-
-        for (win of app.windows()) {
-            win.setFrame(frame);
-            win.maximize();
-        }
-    }
-
-    // apply config
-    for (const [screen, apps] of Object.entries(config)) {
-        for (const app of apps) {
-            setWindowScreen(app, screen);
-        }
-    }
-
-    // focus on Safari
-    let safari = App.get("Safari");
-    if (safari !== undefined) {
-        safari.focus();
-    }
+// save layout every 10 minutes
+Timer.every(600, () => {
+    saveLayout();
 });
 
-// function getScreenLayoutKey() {
-//     let screenIds = Screen.all().map((s) => s.identifier());
-//     screenIds.sort();
-//     let key = screenIds.join("|");
+// "⌘⌃⇧ + s" to save layout
+Key.on("s", ["command", "control", "shift"], () => {
+    saveLayout();
+});
 
-//     return key;
-// }
+const DISPLAYCER_PATH = "/opt/homebrew/bin/displayplacer";
 
-// function setWindowConfig(win) {
-//     console.log(win.title());
-//     let layouts = Storage.get("layouts");
-//     if (layouts === undefined) layouts = {};
+// apply stored layout
+function applyLayout() {
+    const layout = Storage.get(getScreenLayoutKey());
+    if (layout === undefined) return;
 
-//     let layoutKey = getScreenLayoutKey();
-//     let layout = layouts[layoutKey];
-//     if (layout === undefined) layout = {};
+    // apply screen arrangement
+    Task.run(DISPLAYCER_PATH, layout.screenArrangement);
 
-//     layout[win.hash()] = {
-//         screen: win.screen().identifier(),
-//         frame: win.frame(),
-//     };
-//     layouts[layoutKey] = layout;
+    // apply window positions
+    for (const win of Window.all({ visible: true })) {
+        win.setFrame(layout.windowPositions[win.hash()]);
+    }
+}
 
-//     Storage.set("layouts", layouts);
-// }
-
-// Event.on("windowDidOpen", (win) => {
-//     setWindowConfig(win);
-// });
-
-// Event.on("windowDidMove", (win) => {
-//     setWindowConfig(win);
-// });
-
-// Event.on("windowDidResize", (win) => {
-//     setWindowConfig(win);
-// });
-
-// Event.on("windowDidUnminimize", (win) => {
-//     setWindowConfig(win);
-// });
-
-// function deleteWindowConfig(win) {
-//     let layouts = Storage.get("layouts");
-//     if (layouts === undefined) layouts = {};
-
-//     for (let [layoutKey, layout] of Object.entries(layouts)) {
-//         delete layout[win.hash()];
-//         layouts[layoutKey] = layout;
-//     }
-
-//     Storage.set("layouts", layouts);
-// }
-
-// Event.on("windowDidClose", (win) => {
-//     deleteWindowConfig(win);
-// });
+// "⌘⌃⇧ + d" to apply layout
+Key.on("d", ["command", "control", "shift"], () => {
+    applyLayout();
+});
