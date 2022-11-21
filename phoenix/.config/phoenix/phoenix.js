@@ -51,7 +51,8 @@ function applyLayout() {
 
     // apply window positions
     for (const win of Window.all({ visible: true })) {
-        win.setFrame(layout.windowPositions[win.hash()]);
+        const frame = layout.windowPositions[win.hash()];
+        if (frame !== undefined) win.setFrame(frame);
     }
 }
 
