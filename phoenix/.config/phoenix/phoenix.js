@@ -3,6 +3,12 @@ Phoenix.set({
     openAtLogin: true,
 });
 
+// command paths
+const DISPLAYCER = "/opt/homebrew/bin/displayplacer";
+const OPEN = "/usr/bin/open";
+const PGREP = "/usr/bin/pgrep";
+const PKILL = "/usr/bin/pkill";
+
 // generate unique key given attached screens
 function getScreenLayoutKey() {
     let screenIds = Screen.all().map((s) => s.identifier());
@@ -12,7 +18,7 @@ function getScreenLayoutKey() {
 
 // save current screen layout and window positions
 function saveLayout() {
-    Task.run("/opt/homebrew/bin/displayplacer", ["list"], (task) => {
+    Task.run(DISPLAYCER, ["list"], (task) => {
         const stdout = task.output.trim();
         const lastIndex = stdout.lastIndexOf("\n");
         const lastLine = stdout.slice(lastIndex + 1);
@@ -39,8 +45,6 @@ Key.on("s", ["command", "control", "shift"], () => {
     saveLayout();
 });
 
-const DISPLAYCER = "/opt/homebrew/bin/displayplacer";
-
 // apply stored layout
 function applyLayout() {
     const layout = Storage.get(getScreenLayoutKey());
@@ -61,9 +65,6 @@ Key.on("d", ["command", "control", "shift"], () => {
     applyLayout();
 });
 
-const OPEN = "/usr/bin/open";
-const PGREP = "/usr/bin/pgrep";
-const PKILL = "/usr/bin/pkill";
 // both the actual physical screen and dummy one should be listed
 const BETTER_DISPLAY_SCREEN_IDS = [
     "08C153AD-75E3-44CE-948A-26CA0346FA3C",
