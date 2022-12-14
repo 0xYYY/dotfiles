@@ -7,10 +7,11 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$conda\
 $rust\
 $nodejs\
 $golang\
+$conda\
+$python\
 $custom\
 $cmd_duration\
 $line_break\
@@ -38,12 +39,6 @@ read_only_style = "bold red"
 truncation_symbol = ".../"
 format = "[$path]($style)[( $read_only )]($read_only_style) "
 
-[conda]
-symbol = ""
-style = "bold blue"
-format = "[$symbol $environment]($style) "
-ignore_base = false
-
 [rust]
 symbol = ""
 style = "bold red"
@@ -56,6 +51,17 @@ format = "[$symbol ($version )]($style)"
 [golang]
 symbol = "ﳑ"
 format = "[$symbol ($version )]($style)"
+
+[conda]
+symbol = ""
+style = "bold blue"
+format = "[$symbol $environment]($style) "
+ignore_base = true
+
+[python]
+symbol = ""
+style = "bold blue"
+format = '[${symbol} (${version} )(\($virtualenv\) )]($style)'
 
 [git_branch]
 format = "[$symbol$branch]($style) "

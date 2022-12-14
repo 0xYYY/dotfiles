@@ -7,6 +7,7 @@ create_default_packages:
   - tqdm
   - python-box
   - pyyaml
+  - pre-commit
 
 channels:
   - pytorch
