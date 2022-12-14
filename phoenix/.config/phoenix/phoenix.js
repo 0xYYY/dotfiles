@@ -36,9 +36,11 @@ function saveLayout() {
 }
 
 // save layout every 10 minutes
-Timer.every(600, () => {
-    saveLayout();
-});
+// Timer.after(120, () => {
+//     Timer.every(600, () => {
+//         saveLayout();
+//     });
+// });
 
 // "⌘⌃⇧ + s" to save layout
 Key.on("s", ["command", "control", "shift"], () => {
@@ -62,6 +64,7 @@ function applyLayout() {
 
 // "⌘⌃⇧ + d" to apply layout
 Key.on("d", ["command", "control", "shift"], () => {
+    toggleBetterDisplay();
     applyLayout();
 });
 

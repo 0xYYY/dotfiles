@@ -23,7 +23,7 @@ add_newline = true
 
 [username]
 style_user = "bold blue"
-format = "[$user]($style) "
+format = "[0xYYY]($style) "
 show_always = true
 
 [hostname]
