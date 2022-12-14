@@ -127,12 +127,13 @@ cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui gping 
 ### Python
 
 Install Python and [Mamba](https://mamba.readthedocs.io/en/latest/index.html) for package
-management.
+management, [Poetry](https://python-poetry.org/) for project management.
 
 ```bash
 curl -Ls https://micro.mamba.pm/api/micromamba/osx-arm64/latest | tar -xvj bin/micromamba
 mkdir -p $HOME/.local/bin && mv bin/micromamba $HOME/.local/bin && rm -r bin
 mamba install -n base python=3.10 ipython --yes
+curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.poetry python -
 ```
 
 ### NodeJS

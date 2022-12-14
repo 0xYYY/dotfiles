@@ -18,7 +18,7 @@ zvm_after_init_commands+=(
 )
 
 # plugins
-plugins=(extract fd git golang tmux ripgrep rust yarn zoxide zsh-vi-mode)
+plugins=(extract fd git golang poetry tmux ripgrep rust yarn zoxide zsh-vi-mode)
 FOUNDRY_PLUGIN_DIR=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/foundry
 fpath+=$FOUNDRY_PLUGIN_DIR
 
