@@ -188,7 +188,7 @@ nvim --headless -u .config/nvim/packer_install.lua > /dev/null 2>&1
 
 ```bash
 brew install golangci-lint lua-language-server rust-analyzer shfmt shellharden stylua
-mamba install black isort pydocstyle pylint ruff
+mamba install black mypy ruff
 yarn global add bash-language-server prettier prettier-plugin-solidity pyright \
     solidity-language-server typescript typescript-language-server
 go install golang.org/x/tools/gopls@latest
