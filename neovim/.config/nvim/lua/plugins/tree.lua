@@ -1,7 +1,7 @@
 local utils = require("utils")
 
-utils.map("n", "<C-_>", ":NvimTreeToggle<CR>")
-utils.map("i", "<C-_>", "<ESC>:NvimTreeToggle<CR>")
+utils.map("n", "<Leader>/", ":NvimTreeToggle<CR>")
+utils.map("i", "<Leader>/", "<ESC>:NvimTreeToggle<CR>")
 
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({

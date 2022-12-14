@@ -51,4 +51,4 @@ require("symbols-outline").setup({
 	},
 })
 
-utils.map("n", "<Leader>/", ":SymbolsOutline<CR>")
+utils.map("n", "<Leader>\\", ":SymbolsOutline<CR>")
