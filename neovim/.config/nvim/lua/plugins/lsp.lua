@@ -5,87 +5,86 @@ local nvim_lsp = require("lspconfig")
 local null_ls = require("null-ls")
 
 local on_attach = function(client, bufnr)
-	-- Formatting
-	require("lsp-format").on_attach(client)
+    -- Formatting
+    require("lsp-format").on_attach(client)
 
-	-- Mappings
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+    -- Mappings
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
-	local opts = { noremap = true, silent = true }
-	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    local opts = { noremap = true, silent = true }
+    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "sumneko_lua", "solidity_ls", "tsserver" }
 for _, lsp in ipairs(servers) do
-	local config = {
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = 150,
-		},
-		capabilities = capabilities,
-	}
-	if type(lsp) == "string" then
-		-- lspconfig builtins
-		lsp = nvim_lsp[lsp]
-		if lsp == "sumneko_lua" then
-			config.settings = {
-				Lua = {
-					runtime = {
-						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = {
-						enable = false,
-					},
-				},
-			}
-		end
-	else
-		-- rust-tools
-		config = { server = config }
-	end
-	lsp.setup(config)
+    local config = {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities,
+    }
+    if type(lsp) == "string" then
+        -- lspconfig builtins
+        lsp = nvim_lsp[lsp]
+        if lsp == "sumneko_lua" then
+            config.settings = {
+                Lua = {
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        -- Get the language server to recognize the `vim` global
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        -- Make the server aware of Neovim runtime files
+                        library = vim.api.nvim_get_runtime_file("", true),
+                    },
+                    -- Do not send telemetry data containing a randomized but unique identifier
+                    telemetry = {
+                        enable = false,
+                    },
+                },
+            }
+        end
+    else
+        -- rust-tools
+        config = { server = config }
+    end
+    lsp.setup(config)
 end
 
 -- null-ls
 null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.prettier.with({
-			extra_filetypes = { "solidity", "toml", "html" },
-			extra_args = { "--tab-width", "4" },
-		}),
-		-- python
-		null_ls.builtins.formatting.isort,
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.diagnostics.pylint,
-		null_ls.builtins.diagnostics.pydocstyle,
-		-- go
-		null_ls.builtins.formatting.gofumpt,
-		null_ls.builtins.diagnostics.golangci_lint,
-		-- bash
-		null_ls.builtins.formatting.shfmt.with({
-			extra_args = { "--indent", "4" },
-		}),
-		null_ls.builtins.formatting.shellharden,
-		-- lua
-		null_ls.builtins.formatting.stylua,
-	},
-	on_attach = on_attach,
+    sources = {
+        null_ls.builtins.formatting.prettier.with({
+            extra_filetypes = { "solidity", "toml", "html" },
+            extra_args = { "--tab-width", "4" },
+        }),
+        -- python
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.ruff,
+        null_ls.builtins.diagnostics.ruff,
+        -- go
+        null_ls.builtins.formatting.gofumpt,
+        null_ls.builtins.diagnostics.golangci_lint,
+        -- bash
+        null_ls.builtins.formatting.shfmt.with({
+            extra_args = { "--indent", "4" },
+        }),
+        null_ls.builtins.formatting.shellharden,
+        -- lua
+        null_ls.builtins.formatting.stylua,
+    },
+    on_attach = on_attach,
 })
 
 -- lsp_lines
@@ -112,8 +111,8 @@ vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.cyan })
 -- Signs
 local signs = { Error = "", Warning = "", Information = "", Hint = "" }
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- lspsaga
@@ -179,17 +178,17 @@ kind[26][2] = " "
 
 local saga = require("lspsaga")
 saga.init_lsp_saga({
-	border_style = "double",
-	saga_winblend = 10,
-	diagnostic_header = { " ", " ", " ", " " },
-	code_action_icon = " ",
-	symbol_in_winbar = {
-		in_custom = false,
-		enable = true,
-		separator = "  ",
-		show_file = true,
-		click_support = false,
-	},
+    border_style = "double",
+    saga_winblend = 10,
+    diagnostic_header = { " ", " ", " ", " " },
+    code_action_icon = " ",
+    symbol_in_winbar = {
+        in_custom = false,
+        enable = true,
+        separator = "  ",
+        show_file = true,
+        click_support = false,
+    },
 })
 
 -- keymap
@@ -213,36 +212,36 @@ utils.map("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
 -- highlight
 vim.api.nvim_set_hl(0, "LspSagaWinbarSep", { fg = colors.base00 })
 local border_hl_groups = {
-	"LspSagaDefPreviewBorder",
-	"LspSagaSignatureHelpBorder",
-	"LspSagaHoverBorder",
-	"LspSagaDiagnosticBorder",
-	"LspSagaRenameBorder",
-	"LspSagaCodeActionBorder",
+    "LspSagaDefPreviewBorder",
+    "LspSagaSignatureHelpBorder",
+    "LspSagaHoverBorder",
+    "LspSagaDiagnosticBorder",
+    "LspSagaRenameBorder",
+    "LspSagaCodeActionBorder",
 }
 for _, g in pairs(border_hl_groups) do
-	vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
+    vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
 end
 local line_hl_groups = {
 
-	"LspSagaShTrunCateLine",
-	"LspSagaHoverTrunCateLine",
-	"LspSagaDiagnosticTruncateLine",
-	"LspSagaErrorTrunCateLine",
-	"LspSagaWarnTrunCateLine",
-	"LspSagaInfoTrunCateLine",
-	"LspSagaHintTrunCateLine",
-	"LspSagaCodeActionTrunCateLine",
+    "LspSagaShTrunCateLine",
+    "LspSagaHoverTrunCateLine",
+    "LspSagaDiagnosticTruncateLine",
+    "LspSagaErrorTrunCateLine",
+    "LspSagaWarnTrunCateLine",
+    "LspSagaInfoTrunCateLine",
+    "LspSagaHintTrunCateLine",
+    "LspSagaCodeActionTrunCateLine",
 }
 for _, g in pairs(line_hl_groups) do
-	vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
+    vim.api.nvim_set_hl(0, g, { fg = colors.base00 })
 end
 local title_hl_groups = {
-	"DefinitionPreviewTitle",
-	"LspSagaDiagnosticHeader",
-	"LspSagaCodeActionTitle",
+    "DefinitionPreviewTitle",
+    "LspSagaDiagnosticHeader",
+    "LspSagaCodeActionTitle",
 }
 for _, g in pairs(title_hl_groups) do
-	vim.api.nvim_set_hl(0, g, { fg = colors.blue, bold = true })
+    vim.api.nvim_set_hl(0, g, { fg = colors.blue, bold = true })
 end
 vim.api.nvim_set_hl(0, "LspSagaCodeActionContent", { fg = colors.base2 })
