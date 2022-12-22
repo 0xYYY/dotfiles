@@ -1,6 +1,6 @@
 [user]
     name = 0xYYY
-    email = 0xYYY@protonmail.com
+    email = 0xYYY@pm.me
 
 [credential "https://github.com"]
     helper = !/opt/homebrew/bin/gh auth git-credential
