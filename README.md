@@ -106,7 +106,7 @@ Install Rust and [`sccache`](https://github.com/mozilla/sccache) for faster comp
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --verbose -y --no-modify-path
 rustup component add rust-src
 rustup toolchain install nightly
-cargo install sccache
+cargo install sccache cargo-binstall
 cd .dotfiles && stow cargo && cd ~
 ```
 
@@ -119,9 +119,9 @@ I like to explore CLI tools implemented in Rust, since
    starting points.
 
 ```bash
-cargo install atuin bat bottom choose dua-cli exa fd-find git-delta gitui gping heh hexyl huniq \
-    hyperfine jless jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd skim starship \
-    tokei tuc watchexec-cli xcp xh xsv zoxide
+cargo binstall atuin bat bottom cargo-nextest choose dua-cli exa fd-find git-delta gitui gping heh \
+    hexyl huniq hyperfine jless jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd \
+    skim starship tokei tuc watchexec-cli xcp xh xsv zoxide
 ```
 
 ### Python
