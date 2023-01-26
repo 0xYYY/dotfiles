@@ -120,8 +120,8 @@ I like to explore CLI tools implemented in Rust, since
 
 ```bash
 cargo binstall atuin bat bottom cargo-nextest choose dua-cli exa fd-find git-delta gitui gping heh \
-    hexyl huniq hyperfine jless jql just macchina procs pueue ripgrep rm-improved rnr rustcat sd \
-    skim starship tokei tuc watchexec-cli xcp xh xsv zoxide
+    hexyl huniq hyperfine jless jql just macchina ouch procs pueue ripgrep rm-improved rnr rustcat \
+    sd skim starship tokei tuc watchexec-cli xcp xh xsv zoxide
 ```
 
 ### Python
