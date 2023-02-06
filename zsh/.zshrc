@@ -1,4 +1,5 @@
 ## Oh My Zsh
+# zmodload zsh/zprof
 
 export ZSH=$HOME/.oh-my-zsh
 
@@ -144,3 +145,5 @@ fi
 if [ -f ${GCLOUD_DIR}"/completion.zsh.inc" ]; then
     . ${GCLOUD_DIR}/"completion.zsh.inc"
 fi
+
+# zprof
