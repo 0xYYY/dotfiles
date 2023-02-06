@@ -70,7 +70,7 @@ null_ls.setup({
 			extra_args = { "--tab-width", "4" },
 		}),
 		-- python
-		null_ls.builtins.formatting.black,
+		-- null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.ruff,
 		null_ls.builtins.diagnostics.ruff,
 		null_ls.builtins.diagnostics.mypy,
@@ -117,78 +117,65 @@ for type, icon in pairs(signs) do
 end
 
 -- lspsaga
--- hack to modify winbar colors
-local kind = require("lspsaga.lspkind")
-kind[1][3] = colors.base1
-kind[2][3] = colors.blue
-kind[3][3] = colors.orange
-kind[4][3] = colors.violet
-kind[5][3] = colors.violet
-kind[6][3] = colors.violet
-kind[7][3] = colors.cyan
-kind[8][3] = colors.cyan
-kind[9][3] = colors.blue
-kind[10][3] = colors.green
-kind[11][3] = colors.orange
-kind[12][3] = colors.violet
-kind[13][3] = colors.blue
-kind[14][3] = colors.cyan
-kind[15][3] = colors.green
-kind[16][3] = colors.green
-kind[17][3] = colors.orange
-kind[18][3] = colors.blue
-kind[19][3] = colors.orange
-kind[20][3] = colors.red
-kind[21][3] = colors.red
-kind[22][3] = colors.green
-kind[23][3] = colors.violet
-kind[24][3] = colors.violet
-kind[25][3] = colors.green
-kind[26][3] = colors.green
-kind[252][3] = colors.green
-kind[253][3] = colors.blue
-kind[254][3] = colors.orange
-kind[255][3] = colors.red
-
-kind[1][2] = " "
-kind[2][2] = " "
-kind[3][2] = " "
-kind[4][2] = " "
-kind[5][2] = " "
-kind[6][2] = " "
-kind[7][2] = " "
-kind[8][2] = " "
-kind[9][2] = " "
-kind[10][2] = " "
-kind[11][2] = " "
-kind[12][2] = " "
-kind[13][2] = " "
-kind[14][2] = " "
-kind[15][2] = " "
-kind[16][2] = " "
-kind[17][2] = " "
-kind[18][2] = " "
-kind[19][2] = " "
-kind[20][2] = " "
-kind[21][2] = "ﳠ "
-kind[22][2] = " "
-kind[23][2] = "פּ "
-kind[24][2] = " "
-kind[25][2] = ""
-kind[26][2] = " "
-
-local saga = require("lspsaga")
-saga.init_lsp_saga({
-	border_style = "double",
-	saga_winblend = 10,
-	diagnostic_header = { " ", " ", " ", " " },
-	code_action_icon = " ",
+require("lspsaga").setup({
+	ui = {
+		border = "double",
+		winblend = 10,
+		diagnostic = { " ", " ", " ", " " },
+		code_action = " ",
+		colors = {
+			red = colors.red,
+			magenta = colors.magenta,
+			orange = colors.orange,
+			yellow = colors.yellow,
+			green = colors.green,
+			cyan = colors.cyan,
+			blue = colors.blue,
+			purple = colors.purple,
+			white = colors.base3,
+			black = colors.base02,
+			gray = colors.base00,
+			normal_bg = colors.base03,
+			title_bg = colors.base00,
+			fg = colors.base2,
+		},
+		kind = {
+			File = " ",
+			Module = " ",
+			Namespace = " ",
+			Package = " ",
+			Class = " ",
+			Method = " ",
+			Property = " ",
+			Field = " ",
+			Constructor = " ",
+			Enum = " ",
+			Interface = " ",
+			Function = " ",
+			Variable = " ",
+			Constant = " ",
+			String = " ",
+			Number = " ",
+			Boolean = " ",
+			Array = " ",
+			Object = " ",
+			Key = " ",
+			Null = "ﳠ ",
+			EnumMember = " ",
+			Struct = "פּ ",
+			Event = " ",
+			Operator = "",
+			TypeParameter = " ",
+			TypeAlias = " ",
+			Parameter = " ",
+			StaticMethod = "ﴂ ",
+			Macro = " ",
+		},
+	},
 	symbol_in_winbar = {
-		in_custom = false,
 		enable = true,
 		separator = "  ",
 		show_file = true,
-		click_support = false,
 	},
 })
 
