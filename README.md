@@ -35,7 +35,14 @@ xcode-select --install
 
 ```bash
 brew install asciinema direnv gh glow jq tmux yq
-brew install cmatrix figlet lolcat nyancat  # just for fun!
+
+# gh extensions
+gh extension install dlvhdr/gh-dash
+gh extension install seachicken/gh-poi
+gh extension install gh-markdown-preview
+
+# just for fun!
+brew install cmatrix figlet lolcat nyanca
 figlet hello, world\! | lolcat
 ```
 
