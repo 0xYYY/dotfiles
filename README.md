@@ -113,7 +113,7 @@ Install Rust and [`sccache`](https://github.com/mozilla/sccache) for faster comp
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --verbose -y --no-modify-path
 rustup component add rust-src
 rustup toolchain install nightly
-cargo install sccache cargo-binstall
+cargo install sccache cargo-binstall cargo-update
 cd .dotfiles && stow cargo && cd ~
 ```
 
