@@ -1,7 +1,7 @@
 [alias]
 # binary installation and update
 bi = "binstall"
-bu = "cargo-update"
+bu = "install-update --all"
 
 [build]
 rustc-wrapper = ".cargo/bin/sccache"
