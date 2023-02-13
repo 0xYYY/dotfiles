@@ -36,6 +36,9 @@ xcode-select --install
 ```bash
 brew install asciinema direnv gh glow jq tmux yq
 
+# nix
+sh <(curl -L https://nixos.org/nix/install)
+
 # gh extensions
 gh extension install dlvhdr/gh-dash
 gh extension install seachicken/gh-poi
