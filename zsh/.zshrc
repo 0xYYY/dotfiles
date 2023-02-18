@@ -52,10 +52,12 @@ alias gaa='git add --all'
 alias gst='git status'
 alias gd='git diff'
 gcl () {
+    pwd=$(pwd)
     url=$1
 
     cd $HOME/Repos
     gh repo clone $url
+    cd $pwd
 
     repo=$(echo $1 | choose -f "/" 3)
     tsc $repo $HOME/Repos/$repo
