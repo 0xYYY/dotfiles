@@ -19,7 +19,7 @@ zvm_after_init_commands+=(
 )
 
 # plugins
-plugins=(direnv fd gh git golang poetry tmux ripgrep rust yarn zoxide zsh-vi-mode)
+plugins=(direnv fd gh golang poetry tmux ripgrep rust yarn zoxide zsh-vi-mode)
 FOUNDRY_PLUGIN_DIR=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/foundry
 fpath+=$FOUNDRY_PLUGIN_DIR
 
@@ -43,6 +43,23 @@ alias lt="exa --tree --long"
 alias lta="exa --tree --long --all"
 alias rip="rip --graveyard ~/.local/share/graveyard"
 alias ipy="ipython"
+
+# alias g="git"
+alias gcmsg='git commit --message'
+alias ggpush='git push origin "$(git_current_branch)"'
+alias gluc='git pull upstream $(git_current_branch)'
+alias gaa='git add --all'
+alias gst='git status'
+alias gd='git diff'
+gcl () {
+    url=$1
+
+    cd $HOME/Repos
+    gh repo clone $url
+
+    repo=$(echo $1 | choose -f "/" 3)
+    tsc $repo $HOME/Repos/$repo
+}
 
 FOUNDRY_BUILD_DIR=$HOME/repos/foundry/target/debug
 alias lanvil=$FOUNDRY_BUILD_DIR/anvil
