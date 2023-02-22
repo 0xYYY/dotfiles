@@ -222,6 +222,7 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 -   [Phoenix](https://github.com/kasper/phoenix)
 -   [Raycast](https://www.raycast.com)
 -   [Rectengle](https://rectangleapp.com)
+-   [Vimari](https://github.com/televator-apps/vimari)
 
 ## License
 
