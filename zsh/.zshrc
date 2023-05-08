@@ -59,7 +59,7 @@ gcl () {
     gh repo clone $url
     cd $pwd
 
-    repo=$(echo $1 | choose -f "/" 3)
+    repo=$(echo $1 | rev | choose -f "/" 0 | rev)
     tsc $repo $HOME/Repos/$repo
 }
 

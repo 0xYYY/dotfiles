@@ -21,7 +21,7 @@ end
 
 -- Setup
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "sumneko_lua", "solidity_ls", "tsserver" }
+local servers = { "bashls", "gopls", "pyright", require("rust-tools"), "lua_ls", "solidity_ls", "tsserver" }
 for _, lsp in ipairs(servers) do
 	local config = {
 		on_attach = on_attach,
@@ -33,7 +33,7 @@ for _, lsp in ipairs(servers) do
 	if type(lsp) == "string" then
 		-- lspconfig builtins
 		lsp = nvim_lsp[lsp]
-		if lsp == "sumneko_lua" then
+		if lsp == "lua_ls" then
 			config.settings = {
 				Lua = {
 					runtime = {
@@ -70,8 +70,8 @@ null_ls.setup({
 			extra_args = { "--tab-width", "4" },
 		}),
 		-- python
-		-- null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.ruff,
+		null_ls.builtins.formatting.black,
+		-- null_ls.builtins.formatting.ruff,
 		null_ls.builtins.diagnostics.ruff,
 		null_ls.builtins.diagnostics.mypy,
 		-- go
