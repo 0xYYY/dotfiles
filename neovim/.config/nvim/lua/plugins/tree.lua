@@ -1,66 +1,5 @@
 local utils = require("utils")
 
-utils.map("n", "<Leader>/", ":NvimTreeToggle<CR>")
-utils.map("i", "<Leader>/", "<ESC>:NvimTreeToggle<CR>")
-
-require("nvim-tree").setup({
-	on_attach = on_attach,
-	hijack_cursor = true,
-	sync_root_with_cwd = false,
-	update_focused_file = {
-		enable = true,
-		update_root = true,
-	},
-	view = {
-		width = 32,
-		side = "left",
-	},
-	renderer = {
-		indent_markers = {
-			enable = true,
-			icons = {
-				corner = "└",
-				edge = "│ ",
-				none = "  ",
-			},
-		},
-		icons = {
-			webdev_colors = true,
-			symlink_arrow = "->",
-			glyphs = {
-				bookmark = "",
-				git = {
-					unstaged = "~",
-					staged = "",
-					unmerged = "",
-					renamed = "ﲖ",
-					untracked = "",
-					deleted = "✗",
-					ignored = "◌",
-				},
-			},
-		},
-		highlight_git = true,
-		highlight_opened_files = "3",
-		add_trailing = true,
-		group_empty = true,
-	},
-	git = {
-		enable = true,
-		ignore = true,
-		timeout = 400,
-	},
-	diagnostics = {
-		enable = true,
-		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
-		},
-	},
-})
-
 --
 -- This function has been generated from your
 --   view.mappings.list
@@ -149,5 +88,87 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "v", api.node.open.horizontal, opts("Open: Horizontal Split"))
 end
 
--- Kepmap
+require("nvim-tree").setup({
+	on_attach = on_attach,
+	hijack_cursor = true,
+	sync_root_with_cwd = false,
+	update_focused_file = {
+		enable = true,
+		update_root = false,
+	},
+	view = {
+		width = 32,
+		side = "left",
+	},
+	renderer = {
+		indent_markers = {
+			enable = true,
+			icons = {
+				corner = "└",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
+		icons = {
+			webdev_colors = true,
+			symlink_arrow = "->",
+			glyphs = {
+				bookmark = "",
+				git = {
+					unstaged = "~",
+					staged = "",
+					unmerged = "",
+					renamed = "ﲖ",
+					untracked = "",
+					deleted = "✗",
+					ignored = "◌",
+				},
+			},
+		},
+		highlight_git = true,
+		highlight_opened_files = "3",
+		add_trailing = true,
+		group_empty = true,
+	},
+	git = {
+		enable = true,
+		ignore = true,
+		timeout = 400,
+	},
+	diagnostics = {
+		enable = true,
+		icons = {
+			hint = "",
+			info = "",
+			warning = "",
+			error = "",
+		},
+	},
+})
+
 vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
+
+-- NOTE: https://github.com/romgrk/barbar.nvim/issues/421
+-- auto open nvim-tree when open neovim
+-- local function open_nvim_tree(data)
+-- 	-- buffer is a real file on the disk
+-- 	local real_file = vim.fn.filereadable(data.file) == 1
+
+-- 	-- buffer is a [No Name]
+-- 	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+-- 	-- only files please
+-- 	if not real_file and not no_name then
+-- 		return
+-- 	end
+
+-- 	-- open the tree but dont focus it
+-- 	require("nvim-tree.api").tree.toggle({ focus = false })
+-- 	vim.api.nvim_exec_autocmds("BufWinEnter", { buffer = require("nvim-tree.view").get_bufnr() })
+-- end
+
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+-- Kepmap
+utils.map("n", "<Leader>/", ":NvimTreeToggle<CR>")
+utils.map("i", "<Leader>/", "<ESC>:NvimTreeToggle<CR>")

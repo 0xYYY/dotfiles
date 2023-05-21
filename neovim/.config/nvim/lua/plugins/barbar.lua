@@ -34,6 +34,12 @@ require("barbar").setup({
 	-- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
 	hide = { extensions = true, inactive = false },
 
+	-- Set the filetypes which barbar will offset itself for
+	sidebar_filetypes = {
+		-- Use the default values: {event = 'BufWinLeave', text = nil}
+		NvimTree = true,
+	},
+
 	icons = {
 		-- Configure the base icons on the bufferline.
 		-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
@@ -47,15 +53,15 @@ require("barbar").setup({
 			[vim.diagnostic.severity.INFO] = { enabled = false },
 			[vim.diagnostic.severity.HINT] = { enabled = false },
 		},
-		gitsigns = {
-			added = { enabled = true, icon = "+" },
-			changed = { enabled = true, icon = "~" },
-			deleted = { enabled = true, icon = "-" },
-		},
+		-- gitsigns = {
+		-- 	added = { enabled = true, icon = "+" },
+		-- 	changed = { enabled = true, icon = "~" },
+		-- 	deleted = { enabled = true, icon = "-" },
+		-- },
 		filetype = {
 			-- Sets the icon's highlight group.
 			-- If false, will use nvim-web-devicons colors
-			custom_colors = false,
+			custom_colors = true,
 
 			-- Requires `nvim-web-devicons` if `true`
 			enabled = true,
@@ -83,18 +89,21 @@ vim.api.nvim_set_hl(0, "BufferCurrentSign", { fg = colors.base03 })
 vim.api.nvim_set_hl(0, "BufferCurrentIndex", { link = "BufferCurrent" })
 vim.api.nvim_set_hl(0, "BufferCurrentMod", { bg = colors.base03, fg = colors.yellow })
 vim.api.nvim_set_hl(0, "BufferCurrentTarget", { bg = colors.base03, fg = colors.red })
+vim.api.nvim_set_hl(0, "BufferCurrentERROR", { bg = colors.base03, fg = colors.red })
 
 vim.api.nvim_set_hl(0, "BufferVisible", { bg = colors.base03, fg = colors.base1, bold = true })
 vim.api.nvim_set_hl(0, "BufferVisibleSign", { fg = colors.base03 })
 vim.api.nvim_set_hl(0, "BufferVisibleIndex", { link = "BufferVisible" })
-vim.api.nvim_set_hl(0, "BufferVisibleMod", { bg = colors.base03, fg = colors.yellow })
+vim.api.nvim_set_hl(0, "BufferVisibleMod", { link = "BufferVisible" })
 vim.api.nvim_set_hl(0, "BufferVisibleTarget", { bg = colors.base03, fg = colors.red })
+vim.api.nvim_set_hl(0, "BufferVisibleERROR", { link = "BufferVisible" })
 
 vim.api.nvim_set_hl(0, "BufferInactive", { bg = colors.base03, fg = colors.base01, italic = true })
 vim.api.nvim_set_hl(0, "BufferInactiveSign", { fg = colors.base03 })
 vim.api.nvim_set_hl(0, "BufferInactiveIndex", { link = "BufferInactive" })
-vim.api.nvim_set_hl(0, "BufferInactiveMod", { bg = colors.base03, fg = colors.yellow })
+vim.api.nvim_set_hl(0, "BufferInactiveMod", { link = "BufferInactive" })
 vim.api.nvim_set_hl(0, "BufferInactiveTarget", { bg = colors.base03, fg = colors.red })
+vim.api.nvim_set_hl(0, "BufferInactiveERROR", { link = "BufferInactive" })
 
 vim.api.nvim_set_hl(0, "BufferTabpages", { link = "BufferCurrent" })
 vim.api.nvim_set_hl(0, "BufferTabpageFill", { link = "BufferCurrent" })
