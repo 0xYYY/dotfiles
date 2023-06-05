@@ -18,7 +18,8 @@ require("plugins.symbols-outline")
 require("plugins.completion")
 
 -- Editing
-require("plugins.hop")
+-- require("plugins.hop")
+require("plugins.leap")
 require("plugins.surround")
 require("plugins.kommentary")
 require("plugins.todo")

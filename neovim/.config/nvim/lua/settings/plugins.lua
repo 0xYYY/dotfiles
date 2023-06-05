@@ -54,7 +54,7 @@ local completion = {
 }
 
 local editing = {
-	"phaazon/hop.nvim",
+	"ggandor/leap.nvim",
 	"kylechui/nvim-surround",
 	"b3nj5m1n/kommentary",
 	"folke/todo-comments.nvim",
@@ -67,6 +67,7 @@ local utils = {
 	"aserowy/tmux.nvim",
 	"roxma/vim-tmux-clipboard",
 	"ellisonleao/carbon-now.nvim",
+	"tpope/vim-repeat",
 }
 
 -- Settings that need to go before loading the plugin
