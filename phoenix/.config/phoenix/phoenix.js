@@ -65,7 +65,7 @@ function applyLayout() {
 // "⌘⌃⇧ + d" to apply layout
 Key.on("d", ["command", "control", "shift"], () => {
     toggleBetterDisplay();
-    applyLayout();
+    // applyLayout();
 });
 
 // both the actual physical screen and dummy one should be listed

@@ -219,6 +219,7 @@ Not actually part of the dotfiles, but useful applications for improving Mac UI/
 -   [BetterDisplay](https://github.com/waydabber/BetterDisplay#readme)
 -   [BetterTouchTool](https://folivora.ai)
 -   [DisplayPlacer](https://github.com/jakehilborn/displayplacer)
+-   [Moom](https://manytricks.com/moom/)
 -   [Phoenix](https://github.com/kasper/phoenix)
 -   [Raycast](https://www.raycast.com)
 -   [Rectengle](https://rectangleapp.com)
