@@ -70,4 +70,4 @@ opt.bufhidden = "unload"
 opt.hidden = true
 
 -- Jump to the last position when opening a file
-cmd([[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
+cmd([[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
