@@ -1,4 +1,5 @@
 -- UI
+require("plugins.neosolarized")
 require("plugins.colorizer")
 require("plugins.barbar")
 require("plugins.lualine")
@@ -18,10 +19,9 @@ require("plugins.symbols-outline")
 require("plugins.completion")
 
 -- Editing
--- require("plugins.hop")
 require("plugins.leap")
 require("plugins.surround")
-require("plugins.kommentary")
+require("plugins.comment")
 require("plugins.todo")
 require("plugins.specs")
 

@@ -8,7 +8,6 @@ vim.g.node_host_prog = "$HOME/.volta/tools/shared/neovim/bin/cli.js"
 -- Appearance
 opt.termguicolors = true
 opt.background = "dark"
-cmd("colorscheme NeoSolarized")
 cmd("autocmd VimEnter * highlight NormalFloat guibg=none")
 
 -- Line number
@@ -51,16 +50,16 @@ cmd("autocmd vimEnter * highlight IncSearch guifg=none gui=bold,underline")
 opt.mouse = "a"
 opt.wildmenu = true
 opt.wildignore:append({
-    "*.swp",
-    "*.swo",
-    "*.swn",
-    "*.zip",
-    "*.png",
-    "*.jpg",
-    "*jpeg",
-    "*pdf",
-    ".git",
-    "__pycache__",
+	"*.swp",
+	"*.swo",
+	"*.swn",
+	"*.zip",
+	"*.png",
+	"*.jpg",
+	"*jpeg",
+	"*pdf",
+	".git",
+	"__pycache__",
 })
 opt.scrolloff = 8
 opt.cmdheight = 2
@@ -71,6 +70,4 @@ opt.bufhidden = "unload"
 opt.hidden = true
 
 -- Jump to the last position when opening a file
-cmd(
-    [[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
-)
+cmd([[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]

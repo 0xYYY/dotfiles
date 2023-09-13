@@ -126,7 +126,7 @@ require("nvim-tree").setup({
 			},
 		},
 		highlight_git = true,
-		highlight_opened_files = "3",
+		highlight_opened_files = "all",
 		add_trailing = true,
 		group_empty = true,
 	},
@@ -143,7 +143,7 @@ require("nvim-tree").setup({
 			warning = "",
 			error = "",
 		},
-	},
+    },
 })
 
 vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
